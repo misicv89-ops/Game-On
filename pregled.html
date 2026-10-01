@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#E9E4EF;font-family:'Outfit',sans-serif;color:#1A0B2E}a{color:#FF2A85}a:hover{color:#1A0B2E}</style>
+</helmet>
+<section style="padding:40px;display:flex;flex-direction:column;gap:24px;width:max-content">
+  <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap">
+    <h1 style="margin:0;font-size:36px;font-weight:900;letter-spacing:-1px">Game On – pregled</h1>
+    <span style="font-size:17px;color:#5A4A6E">Mobilni 370px · Desktop 1440px (prikazan umanjeno) · obe verzije se skroluju</span>
+  </div>
+  <div style="display:flex;gap:48px;align-items:flex-start">
+    <div id="1a" style="display:flex;flex-direction:column;gap:12px;flex-shrink:0">
+      <div style="display:flex;align-items:center;gap:10px"><span style="background:#1A0B2E;color:#FFDF00;font-weight:800;padding:6px 12px;border-radius:999px">1a</span><span style="font-weight:700;font-size:19px">Mobilni · 370 × 780</span></div>
+      <div style="width:390px;height:800px;box-sizing:border-box;border:10px solid #1A0B2E;border-radius:44px;overflow:hidden;background:#fff;box-shadow:8px 8px 0 #00E5FF">
+        <iframe src="index.html" title="Mobilni" style="width:370px;height:780px;border:0;display:block"></iframe>
+      </div>
+    </div>
+    <div id="1b" style="display:flex;flex-direction:column;gap:12px;flex-shrink:0">
+      <div style="display:flex;align-items:center;gap:10px"><span style="background:#1A0B2E;color:#FFDF00;font-weight:800;padding:6px 12px;border-radius:999px">1b</span><span style="font-weight:700;font-size:19px">Desktop · 1440 × 1100 (60%)</span></div>
+      <div style="width:868px;height:664px;box-sizing:border-box;border:2px solid #1A0B2E;border-radius:16px;overflow:hidden;background:#fff;box-shadow:8px 8px 0 #FF2A85">
+        <iframe src="index.html" title="Desktop" style="width:1440px;height:1100px;border:0;display:block;transform:scale(.6);transform-origin:0 0"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+</body>
+</html>
