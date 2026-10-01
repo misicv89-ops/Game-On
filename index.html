@@ -453,7 +453,7 @@ input,select,textarea,button{font-family:inherit}
       </div>
     </div>
 
-    <div style="background:#FFFBF5;color:#1A0B2E;border-radius:32px;padding:clamp(24px,3.5vw,40px);border:2px solid #FFDF00;box-shadow:8px 8px 0 #FF2A85">
+    <div id="upit" style="background:#FFFBF5;color:#1A0B2E;border-radius:32px;padding:clamp(24px,3.5vw,40px);border:2px solid #FFDF00;box-shadow:8px 8px 0 #FF2A85;scroll-margin-top:90px">
       <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
         <h3 style="font-size:30px;font-weight:900;letter-spacing:-.5px;margin:0 0 6px">Upit za rezervaciju</h3>
         <p style="margin:0 0 26px;color:#5A4A6E;font-size:16px">Javljamo se u roku od 24h da potvrdimo termin.</p>
@@ -476,7 +476,7 @@ input,select,textarea,button{font-family:inherit}
             </label>
           </div>
           <label style="display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:14px">Paket
-            <select name="paket" value="{{ pkg }}" onChange="{{ setPkg }}" style="font-size:17px;padding:14px 16px;border:2px solid #1A0B2E;border-radius:14px;background:#fff;outline:none;cursor:pointer">
+            <select id="upit-paket" name="paket" value="{{ pkg }}" onChange="{{ setPkg }}" style="font-size:17px;font-weight:700;padding:14px 16px;border:2px solid #1A0B2E;border-radius:14px;background:{{ pkgBg }};outline:none;cursor:pointer;transition:background .4s, box-shadow .4s;box-shadow:{{ pkgGlow }}">
               <sc-for list="{{ pkgOptions }}" as="o" hint-placeholder-count="4">
                 <option value="{{ o }}">{{ o }}</option>
               </sc-for>
@@ -725,7 +725,15 @@ class Component extends DCLogic {
     if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 76, behavior: 'smooth' });
     this.setState({ menu: false });
   }
-  book(pkg) { if (pkg) this.setState({ pkg }); this.go('kontakt'); }
+  book(pkg) {
+    this.setState({ pkg: pkg || this.state.pkg, sent: false, pkgFlash: !!pkg });
+    setTimeout(() => {
+      const el = document.getElementById('upit');
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' });
+      this.setState({ menu: false });
+    }, 30);
+    clearTimeout(this.flashT); this.flashT = setTimeout(() => this.setState({ pkgFlash: false }), 2200);
+  }
   renderVals() {
     const s = this.state, desktop = s.w >= 1180;
     const slidesData = [
@@ -798,7 +806,7 @@ class Component extends DCLogic {
       bookGaming: () => this.book('Tematski: Gaming zona'),
       pickKifle: () => this.book('Meni sa kiflicama — 800 RSD'),
       pickPica: () => this.book('Meni sa picom — 900 RSD'),
-      pkg: s.pkg,
+      pkg: s.pkg, pkgBg: s.pkgFlash ? '#FFF6BF' : '#fff', pkgGlow: s.pkgFlash ? '0 0 0 4px rgba(255,42,133,.35)' : 'none',
       pkgOptions: ['Meni sa kiflicama — 800 RSD', 'Meni sa picom — 900 RSD', 'Tematski: Filmska avantura', 'Tematski: Gaming zona'],
       setPkg: e => this.setState({ pkg: e.target.value }),
       submit: e => { e.preventDefault(); const f = new FormData(e.target); this.setState({ sent: true, sentName: String(f.get('ime') || '').split(' ')[0] }); },
