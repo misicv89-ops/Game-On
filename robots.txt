@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://misicv89-ops.github.io/Game-On/sitemap.xml
