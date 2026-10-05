@@ -105,23 +105,14 @@
     revs.forEach(function (el) { rio.observe(el); });
   }
 
-  // ===== Izbor paketa -> forma =====
-  var selPkg = $('#f-paket'), kidsField = $('#f-deca');
-  function choosePackage(name, kids) {
-    if (name) {
-      var ok = Array.prototype.some.call(selPkg.options, function (o) { return o.value === name; });
-      if (ok) selPkg.value = name;
-    }
-    if (kids) kidsField.value = kids;
-    showForm();
-    var top = $('#rezervacija').getBoundingClientRect().top + window.scrollY - 90;
+  // ===== Izbor paketa -> kalendar za zakazivanje =====
+  function choosePackage() {
+    var top = $('#rezervacija').getBoundingClientRect().top + window.scrollY - 80;
     window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
-    selPkg.classList.add('flash');
-    clearError(selPkg);
-    setTimeout(function () { selPkg.classList.remove('flash'); }, 2200);
-    setTimeout(function () { $('#f-ime').focus({ preventScroll: true }); }, reduce ? 0 : 700);
+    if (location.hash !== '#rezervacija') history.replaceState(null, '', '#rezervacija');
+    window.dispatchEvent(new HashChangeEvent('hashchange'));
   }
-  $$('[data-pkg]').forEach(function (b) { b.addEventListener('click', function () { choosePackage(b.getAttribute('data-pkg')); }); });
+  $$('[data-pkg]').forEach(function (b) { b.addEventListener('click', function () { choosePackage(); }); });
 
   // ===== Kalkulator =====
   var kids = $('#kids'), total = $('#calcTotal');
@@ -167,68 +158,6 @@
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
-
-  // ===== Forma za rezervaciju =====
-  var form = $('#form'), ok = $('#f-ok'), alertBox = $('#f-alert'), submit = $('#f-submit'), sending = false;
-  var dateIn = $('#f-datum');
-  var t = new Date(); t.setMinutes(t.getMinutes() - t.getTimezoneOffset());
-  dateIn.min = t.toISOString().slice(0, 10);
-
-  var rules = {
-    'f-ime': function (v) { return v.trim().length < 3 ? 'Unesite ime i prezime.' : ''; },
-    'f-tel': function (v) { var d = v.replace(/[^\d+]/g, ''); return !/^(\+?381|0)6\d{6,8}$/.test(d) && !/^(\+?381|0)[1-5]\d{6,8}$/.test(d) ? 'Unesite ispravan broj telefona (npr. 064 123 4567).' : ''; },
-    'f-email': function (v) { return v && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? 'Email adresa nije ispravna.' : ''; },
-    'f-datum': function (v) { return !v ? 'Izaberite željeni datum.' : (v < dateIn.min ? 'Datum ne može biti u prošlosti.' : ''); },
-    'f-vreme': function (v) { return !v ? 'Izaberite željeni termin.' : (v < '10:00' || v > '22:00' ? 'Radno vreme je od 10:00 do 22:00.' : ''); },
-    'f-deca': function (v) { var n = parseInt(v, 10); return !n || n < 1 ? 'Unesite okviran broj dece.' : ''; },
-    'f-paket': function (v) { return !v ? 'Izaberite paket.' : ''; }
-  };
-  function errEl(input) { return $('#e-' + input.id.replace('f-', '')); }
-  function setError(input, msg) {
-    var e = errEl(input);
-    input.setAttribute('aria-invalid', msg ? 'true' : 'false');
-    if (e) { e.textContent = msg; if (msg) input.setAttribute('aria-describedby', e.id); else input.removeAttribute('aria-describedby'); }
-  }
-  function clearError(input) { setError(input, ''); }
-  function validate(input) { var r = rules[input.id]; if (!r) return true; var m = r(input.value); setError(input, m); return !m; }
-  Object.keys(rules).forEach(function (id) {
-    var el = $('#' + id);
-    el.addEventListener('blur', function () { if (el.value) validate(el); });
-    el.addEventListener('input', function () { if (el.getAttribute('aria-invalid') === 'true') validate(el); });
-    el.addEventListener('change', function () { if (el.getAttribute('aria-invalid') === 'true') validate(el); });
-  });
-
-  function setLoading(on) {
-    sending = on;
-    submit.disabled = on;
-    submit.innerHTML = on ? '<span class="spin" aria-hidden="true"></span> Šaljem…' : 'Pošalji zahtev za rezervaciju';
-  }
-  function showForm() { if (!ok.hidden) { ok.hidden = true; $('#formWrap').hidden = false; } }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (sending) return;
-    alertBox.hidden = true;
-    var firstBad = null;
-    Object.keys(rules).forEach(function (id) { var el = $('#' + id); if (!validate(el) && !firstBad) firstBad = el; });
-    if (firstBad) { firstBad.focus(); return; }
-    if (form._honey && form._honey.value) return;
-    var data = {};
-    new FormData(form).forEach(function (v, k) { data[k] = v; });
-    setLoading(true);
-    fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
-      .then(function (r) { return r.json().then(function (j) { if (!r.ok || String(j.success) !== 'true') throw new Error(j.message || 'Greška'); }); })
-      .then(function () {
-        $('#ok-pkg').textContent = data['Paket'];
-        form.reset(); $('#formWrap').hidden = true; ok.hidden = false; ok.focus();
-      })
-      .catch(function () {
-        alertBox.innerHTML = 'Zahtev trenutno nije moguće poslati. Pozovite nas na <a href="' + PHONE_HREF + '">' + PHONE_LABEL + '</a> ili pišite na <a href="mailto:gameon.igraonica@gmail.com">gameon.igraonica@gmail.com</a>.';
-        alertBox.hidden = false;
-      })
-      .then(function () { setLoading(false); });
-  });
-  $('#f-again').addEventListener('click', function () { showForm(); $('#f-ime').focus(); });
 
   // ===== Raketa (desktop) =====
   var rocket = null;
@@ -352,7 +281,7 @@
     window.addEventListener('scroll', function () { if (heroArt && window.scrollY < 900) heroArt.style.transform = 'translateY(' + Math.min(window.scrollY * 0.08, 60).toFixed(1) + 'px)'; }, { passive: true });
 
     // odsjaj na glavnim dugmadima
-    $$('.hero-cta .btn, .hdr-cta, #f-submit, .pkg .btn, .mbar .btn-pink').forEach(function (b) { b.classList.add('shine'); });
+    $$('.hero-cta .btn, .hdr-cta, .pkg .btn, .mbar .btn-pink').forEach(function (b) { b.classList.add('shine'); });
 
     var fine = window.matchMedia('(pointer: fine)').matches;
     if (fine) {

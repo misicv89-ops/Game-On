@@ -537,48 +537,48 @@
       </div>
     </div>
 
-    <div class="form-card" id="rezervacija">
-      <div id="formWrap">
-        <h3 class="form-h">Upit za rezervaciju</h3>
-        <p class="form-sub">Popunite formu i javićemo vam se da potvrdimo termin.</p>
-        <form id="form" novalidate>
-        <input type="hidden" name="_subject" value="Novi zahtev za rezervaciju – Game On">
-        <input type="hidden" name="_template" value="table">
-        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="f-row">
-          <div class="f"><label for="f-ime">Ime i prezime *</label><input id="f-ime" name="Ime i prezime" required autocomplete="name" placeholder="npr. Jelena Petrović"><p class="f-err" id="e-ime"></p></div>
-          <div class="f"><label for="f-tel">Telefon *</label><input id="f-tel" name="Telefon" type="tel" required autocomplete="tel" inputmode="tel" placeholder="06x xxx xxxx"><p class="f-err" id="e-tel"></p></div>
-        </div>
-        <div class="f"><label for="f-email">Email <span class="opt">(opciono)</span></label><input id="f-email" name="Email" type="email" autocomplete="email" placeholder="ime@primer.com"><p class="f-err" id="e-email"></p></div>
-        <div class="f-row f-row-3">
-          <div class="f"><label for="f-datum">Željeni datum *</label><input id="f-datum" name="Datum" type="date" required><p class="f-err" id="e-datum"></p></div>
-          <div class="f"><label for="f-vreme">Željeni termin *</label><input id="f-vreme" name="Termin" type="time" min="10:00" max="22:00" step="900" required><p class="f-err" id="e-vreme"></p></div>
-          <div class="f"><label for="f-deca">Broj dece *</label><input id="f-deca" name="Broj dece" type="number" inputmode="numeric" min="1" required placeholder="20"><p class="f-err" id="e-deca"></p></div>
-        </div>
-        <div class="f"><label for="f-paket">Odabrani paket *</label>
-          <select id="f-paket" name="Paket" required>
-            <option value="">— Izaberite paket —</option>
-            <option>Meni sa kiflicama — 800 RSD / dete</option>
-            <option>Meni sa picom — 900 RSD / dete</option>
-            <option>Tematska proslava — Filmska avantura</option>
-            <option>Tematska proslava — Gaming zona</option>
-            <option>Još nisam siguran/na</option>
-          </select><p class="f-err" id="e-paket"></p></div>
-        <div class="f"><label for="f-poruka">Poruka / napomena <span class="opt">(opciono)</span></label><textarea id="f-poruka" name="Poruka" rows="3" placeholder="Uzrast slavljenika, posebne želje…"></textarea></div>
-        <button class="btn btn-pink btn-block" id="f-submit" type="submit">Pošalji upit →</button>
-        <p class="f-note">Slanjem forme šaljete zahtev za rezervaciju. Termin je potvrđen tek nakon naše potvrde.</p>
-        <p class="f-alert" id="f-alert" role="alert" hidden></p>
-      </form>
+    <div class="form-card rez-card" id="rezervacija">
+      <h3 class="form-h">Zakažite termin</h3>
+      <p class="form-sub">Izaberite datum i slobodan termin – potvrdu dobijate odmah na email.</p>
+      <ol class="rez-steps" aria-label="Koraci">
+        <li><b>1</b>Datum</li><li><b>2</b>Termin</li><li><b>3</b>Vaši podaci</li>
+      </ol>
+      <div class="rez-frame">
+        <div id="my-cal-inline-rezervacija-termina-igraonica" class="rez-inline"><p class="rez-loading"><span class="spin spin-ink" aria-hidden="true"></span> Učitavam slobodne termine…</p></div>
       </div>
-      <div class="f-ok" id="f-ok" hidden tabindex="-1">
-        <span class="ok-ico" aria-hidden="true">✓</span>
-        <h3>Zahtev je poslat!</h3>
-        <p>Hvala! Primili smo vaš zahtev za <strong id="ok-pkg"></strong>. Javićemo vam se da potvrdimo termin.</p>
-        <button type="button" class="btn btn-light-dark" id="f-again">Pošalji novi zahtev</button>
-      </div>
+      <p class="f-note">Više volite telefonom? <a href="tel:+381644440244">064 444 0244</a> · svaki dan 10–22h</p>
     </div>
   </div>
 </section>
+<script>
+(function () {
+  var el = document.getElementById('my-cal-inline-rezervacija-termina-igraonica'), done = false;
+  if (!el) return;
+  function load() {
+    if (done) return; done = true;
+    (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "rezervacija-termina-igraonica", { origin: "https://app.cal.com" });
+    Cal.config = Cal.config || {};
+    Cal.config.forwardQueryParams = true;
+    var ns = Cal.ns["rezervacija-termina-igraonica"];
+    ns("on", { action: "linkReady", callback: function () { el.classList.add("ready"); var l = el.querySelector('.rez-loading'); if (l) l.remove(); } });
+    ns("inline", {
+      elementOrSelector: "#my-cal-inline-rezervacija-termina-igraonica",
+      config: { "layout": "month_view", "useSlotsViewOnSmallScreen": "true", "theme": "light" },
+      calLink: "vlada-2iou1r/rezervacija-termina-igraonica"
+    });
+    ns("ui", { "theme": "light", "cssVarsPerTheme": { "light": { "cal-brand": "#FF2A85", "cal-text-emphasis": "#1A0B2E", "cal-border-emphasis": "#1A0B2E" }, "dark": { "cal-brand": "#8cdb23" } }, "hideEventTypeDetails": true, "layout": "month_view" });
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io.disconnect(); load(); } }, { rootMargin: '800px 0px' });
+    io.observe(el);
+  } else load();
+  if (location.hash === '#rezervacija') load();
+  window.addEventListener('hashchange', function () { if (location.hash === '#rezervacija') load(); });
+})();
+</script>
+
+
 
 
 </main>
