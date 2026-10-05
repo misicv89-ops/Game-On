@@ -318,7 +318,7 @@
     <div class="calc reveal" id="calc" aria-labelledby="calc-h">
       <div>
         <h3 id="calc-h">Okvirna cena menija</h3>
-        <p class="calc-hint">Izračun važi samo za meni paket (cena × broj dece, minimum 20). Torta i svećica nisu uključeni. Konačnu cenu potvrđujemo pri rezervaciji.</p>
+        <p class="calc-hint">Izračun važi samo za meni paket (cena × broj dece, od 10 do 40 dece). Torta i svećica nisu uključeni. Konačnu cenu potvrđujemo pri rezervaciji.</p>
       </div>
       <div class="calc-ui">
         <fieldset class="seg">
@@ -329,10 +329,10 @@
         <div class="stepper">
           <span class="stepper-l" id="kidsL">Broj dece</span>
           <button type="button" id="kidsMinus" aria-label="Smanji broj dece">−</button>
-          <input id="kids" type="number" inputmode="numeric" min="20" max="200" value="20" aria-labelledby="kidsL">
+          <input id="kids" type="number" inputmode="numeric" min="10" max="40" value="10" aria-labelledby="kidsL">
           <button type="button" id="kidsPlus" aria-label="Povećaj broj dece">+</button>
         </div>
-        <p class="calc-total" aria-live="polite">Procena: <strong id="calcTotal">18.000 RSD</strong></p>
+        <p class="calc-total" aria-live="polite">Procena: <strong id="calcTotal">9.000 RSD</strong></p>
         <button type="button" class="btn btn-pink" id="calcBook">Rezerviši sa ovim izborom</button>
       </div>
     </div>
@@ -389,7 +389,7 @@
         <p class="eyebrow eyebrow-ink">Van rođendanskih termina</p>
         <h2 class="title" id="dnevni-h">Dnevni ulaz</h2>
         <p class="lead lead-ink">Dnevna igraonica je dostupna van zakazanih termina za privatne rođendane. Pozovite pre dolaska da proverite slobodan termin.</p>
-        <a class="btn btn-dark" href="tel:+381644440244">Proveri termin</a>
+        <a class="btn btn-dark" href="tel:+381644440244" aria-label="Pozovite 064 444 0244 da proverite termin"><span aria-hidden="true">📞</span> Proveri termin: 064 444 0244</a>
       </div>
       <dl class="daily-facts">
         <div><dt>Radno vreme</dt><dd class="daily-time">Svakog dana<br><strong>10:00 – 22:00</strong></dd></div>
@@ -544,7 +544,7 @@
         <li><b>1</b>Datum</li><li><b>2</b>Termin</li><li><b>3</b>Vaši podaci</li>
       </ol>
       <div class="rez-frame">
-        <div id="my-cal-inline-rezervacija-termina-igraonica" class="rez-inline"><p class="rez-loading"><span class="spin spin-ink" aria-hidden="true"></span> Učitavam slobodne termine…</p></div>
+        <div id="my-cal-inline" class="rez-inline"><p class="rez-loading"><span class="spin spin-ink" aria-hidden="true"></span> Učitavam slobodne termine…</p></div>
       </div>
       <p class="f-note">Više volite telefonom? <a href="tel:+381644440244">064 444 0244</a> · svaki dan 10–22h</p>
     </div>
@@ -552,22 +552,43 @@
 </section>
 <script>
 (function () {
-  var el = document.getElementById('my-cal-inline-rezervacija-termina-igraonica'), done = false;
+  var el = document.getElementById('my-cal-inline'), done = false;
   if (!el) return;
   function load() {
     if (done) return; done = true;
     (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-    Cal("init", "rezervacija-termina-igraonica", { origin: "https://app.cal.com" });
-    Cal.config = Cal.config || {};
-    Cal.config.forwardQueryParams = true;
-    var ns = Cal.ns["rezervacija-termina-igraonica"];
-    ns("on", { action: "linkReady", callback: function () { el.classList.add("ready"); var l = el.querySelector('.rez-loading'); if (l) l.remove(); } });
-    ns("inline", {
-      elementOrSelector: "#my-cal-inline-rezervacija-termina-igraonica",
-      config: { "layout": "month_view", "useSlotsViewOnSmallScreen": "true", "theme": "light" },
-      calLink: "vlada-2iou1r/rezervacija-termina-igraonica"
+    Cal("init", { origin: "https://app.cal.com" });
+    Cal("on", { action: "linkReady", callback: function () { el.classList.add("ready"); } });
+    var mo = new MutationObserver(function () {
+      var cal = el.querySelector('cal-inline, iframe');
+      if (!cal) return;
+      var l = el.querySelector('.rez-loading'); if (l) l.remove();
+      el.classList.add('ready'); mo.disconnect();
     });
-    ns("ui", { "theme": "light", "cssVarsPerTheme": { "light": { "cal-brand": "#FF2A85", "cal-text-emphasis": "#1A0B2E", "cal-border-emphasis": "#1A0B2E" }, "dark": { "cal-brand": "#8cdb23" } }, "hideEventTypeDetails": true, "layout": "month_view" });
+    mo.observe(el, { childList: true, subtree: true });
+    var CAL_USER = "vlada-2iou1r", CAL_EVENT = "rezervacija-termina-igraonica";
+    var cfg = { "layout": "month_view", "useSlotsViewOnSmallScreen": "true", "theme": "light" };
+    function mount(first) {
+      if (mount.done) return; mount.done = true;
+      if (first) { cfg.month = first.slice(0, 7); cfg.date = first; }
+      Cal("inline", { elementOrSelector: "#my-cal-inline", calLink: CAL_USER + "/" + CAL_EVENT, config: cfg });
+    }
+    // pronađi prvi dan sa slobodnim terminom (Cal.com javni API); ako ne uspe, kalendar se otvara normalno
+    var t = new Date(), end = new Date(t.getTime() + 180 * 864e5), f = function (d) { return d.toISOString().slice(0, 10); };
+    setTimeout(function () { mount(); }, 4000);
+    fetch("https://api.cal.com/v2/slots?eventTypeSlug=" + CAL_EVENT + "&username=" + CAL_USER + "&start=" + f(t) + "&end=" + f(end) + "&timeZone=Europe/Belgrade", { headers: { "cal-api-version": "2024-09-04" } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        var d = j && j.data, days = d ? Object.keys(d).filter(function (k) { return /^\d{4}-\d{2}-\d{2}$/.test(k) && d[k] && d[k].length; }).sort() : [];
+        mount(days[0]);
+      })
+      .catch(function () { mount(); });
+    Cal("ui", {
+      "theme": "light",
+      "cssVarsPerTheme": { "light": { "cal-brand": "#FF2A85", "cal-text-emphasis": "#1A0B2E", "cal-border-emphasis": "#1A0B2E" } },
+      "hideEventTypeDetails": true,
+      "layout": "month_view"
+    });
   }
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io.disconnect(); load(); } }, { rootMargin: '800px 0px' });

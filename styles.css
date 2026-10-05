@@ -152,6 +152,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .ico{flex-shrink:0;width:46px;height:46px;border-radius:14px;background:var(--bg);border:2px solid var(--ink);display:grid;place-items:center;font-size:22px}
 .ico-lg{width:58px;height:58px;font-size:27px;border-radius:16px}
 .marquee-clip{padding:4px 0 clamp(64px,8vw,104px);margin-top:clamp(-28px,-2vw,-14px)}
+@media(min-width:960px){.marquee-clip{margin-top:28px}}
+@media(max-width:959px){.marquee-clip{margin-top:20px}}
 
 /* zones */
 .zones{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}

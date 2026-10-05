@@ -118,15 +118,15 @@
   var kids = $('#kids'), total = $('#calcTotal');
   function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' RSD'; }
   function calc() {
-    var n = Math.max(20, Math.min(200, parseInt(kids.value, 10) || 20));
+    var n = Math.max(10, Math.min(40, parseInt(kids.value, 10) || 10));
     var p = $('input[name="calcPkg"]:checked');
     total.textContent = fmt(n * parseInt(p.value, 10));
     return { n: n, name: p.getAttribute('data-name') };
   }
   kids.addEventListener('input', calc);
   kids.addEventListener('change', function () { kids.value = calc().n; });
-  $('#kidsMinus').addEventListener('click', function () { kids.value = Math.max(20, (parseInt(kids.value, 10) || 20) - 1); calc(); });
-  $('#kidsPlus').addEventListener('click', function () { kids.value = Math.min(200, (parseInt(kids.value, 10) || 20) + 1); calc(); });
+  $('#kidsMinus').addEventListener('click', function () { kids.value = Math.max(10, (parseInt(kids.value, 10) || 10) - 1); calc(); });
+  $('#kidsPlus').addEventListener('click', function () { kids.value = Math.min(40, (parseInt(kids.value, 10) || 10) + 1); calc(); });
   $$('input[name="calcPkg"]').forEach(function (r) { r.addEventListener('change', calc); });
   $('#calcBook').addEventListener('click', function () { var c = calc(); choosePackage(c.name, c.n); });
   calc();
