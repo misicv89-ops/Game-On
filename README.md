@@ -24,8 +24,7 @@ Pri PRVOM slanju stiže mejl "Activate Form" – kliknite Activate. Tek posle to
 Adresa se menja u main.js → FORM_ENDPOINT.
 
 ## Šta treba dopuniti (pretražite "DOPUNITI" i "PRIMERI" u index.html)
-- Trajanje proslave (1h 45min ili 2h) – paketi + FAQ
-- FAQ: maksimalan broj dece, koliko unapred se rezerviše, da li može sopstvena torta
+- FAQ: maksimalan broj dece
 - Cena tematskih proslava; dnevni ulaz: cena i šta je uključeno
 - Google ocena i broj recenzija
 - RECENZIJE: trenutnih 5 su PRIMERI iz stare verzije – zamenite stvarnim Google recenzijama pre objave

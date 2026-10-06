@@ -280,8 +280,7 @@
         <p class="price"><strong>800</strong> RSD <span>/ dete</span></p>
         <dl class="facts">
           <div><dt>Minimalan broj dece</dt><dd>Minimum 20 dece</dd></div>
-          <!-- DOPUNITI: trajanje. Na starom sajtu stoji i "1h 45min" (paketi) i "2h" (o nama). Upisati tačan podatak. -->
-          <div><dt>Trajanje</dt><dd><mark class="todo">[DOPUNITI: 1h 45min ili 2h]</mark></dd></div>
+          <div><dt>Trajanje</dt><dd>1h 45min</dd></div>
           <div><dt>Meni</dt><dd>Kiflice, grickalice i sokići</dd></div>
         </dl>
         <p class="pkg-sub">Šta je uključeno</p>
@@ -300,7 +299,7 @@
         <p class="price"><strong>900</strong> RSD <span>/ dete</span></p>
         <dl class="facts">
           <div><dt>Minimalan broj dece</dt><dd>Minimum 20 dece</dd></div>
-          <div><dt>Trajanje</dt><dd><mark class="todo">[DOPUNITI: 1h 45min ili 2h]</mark></dd></div>
+          <div><dt>Trajanje</dt><dd>1h 45min</dd></div>
           <div><dt>Meni</dt><dd>Pica, grickalice i sokići</dd></div>
         </dl>
         <p class="pkg-sub">Šta je uključeno</p>
@@ -395,8 +394,7 @@
         <div><dt>Radno vreme</dt><dd class="daily-time">Svakog dana<br><strong>10:00 – 22:00</strong></dd></div>
         <!-- DOPUNITI: cena dnevnog ulaza -->
         <div><dt>Cena</dt><dd><mark class="todo">[DOPUNITI]</mark></dd></div>
-        <!-- DOPUNITI: šta je uključeno u dnevni ulaz -->
-        <div><dt>Šta je uključeno</dt><dd><mark class="todo">[DOPUNITI]</mark></dd></div>
+        <div><dt>Šta je uključeno</dt><dd>Animatori, svi sadržaji igraonice</dd></div>
       </dl>
     </div>
   </div>
@@ -500,16 +498,16 @@
       <h2 class="title" id="faq-h">Često postavljana pitanja</h2>
     </div>
     <div class="faq">
-      <details><summary>Koliko traje proslava?</summary><p><mark class="todo">[DOPUNITI INFORMACIJU: 1h 45min ili 2h]</mark></p></details>
+      <details><summary>Koliko traje proslava?</summary><p>Proslava traje 1h 45min.</p></details>
       <details><summary>Koliko dece može da prisustvuje?</summary><p>Minimalni paket je za 20 dece. Maksimalan broj dece: <mark class="todo">[DOPUNITI INFORMACIJU]</mark></p></details>
       <details><summary>Koji paketi su dostupni?</summary><p>Dostupna su dva rođendanska meni paketa: <strong>Meni sa kiflicama</strong> (800 RSD po detetu) i <strong>Meni sa picom</strong> (900 RSD po detetu). Dostupne su i tematske proslave <strong>Filmska avantura</strong> i <strong>Gaming zona</strong>.</p></details>
       <details><summary>Koliko košta rođendan?</summary><p>Cena je 800 RSD po detetu za Meni sa kiflicama i 900 RSD po detetu za Meni sa picom. Minimalni paket je za 20 dece. Torta i svećica nisu uključeni u cenu.</p></details>
-      <details><summary>Da li je potrebno unapred rezervisati termin?</summary><p><mark class="todo">[DOPUNITI INFORMACIJU: koliko dana unapred]</mark></p></details>
+      <details><summary>Da li je potrebno unapred rezervisati termin?</summary><p>Svi slobodni termini su dostupni u sekciji ispod – <a href="#rezervacija">pogledajte i rezervišite</a>.</p></details>
       <details><summary>Kako mogu da rezervišem rođendan?</summary><p>Pošaljite zahtev preko <a href="#rezervacija">forme za rezervaciju</a>, pozovite <a href="tel:+381644440244">064 444 0244</a> ili pišite na <a href="mailto:gameon.igraonica@gmail.com">gameon.igraonica@gmail.com</a>. Termin je potvrđen tek nakon naše potvrde.</p></details>
       <details><summary>Za koji uzrast je Game On?</summary><p>Sadržaji su prilagođeni deci od 2 do 12+ godina – od mekog lavirinta za najmlađe do VR Meta Quest zone za stariju decu.</p></details>
       <details><summary>Da li roditelji mogu da borave u prostoru?</summary><p>Da. Za roditelje je predviđen kafić u okviru igraonice, sa ponudom hrane i pića.</p></details>
       <details><summary>Šta je uključeno u cenu?</summary><p>U cenu paketa uključeni su animatori, hrana iz izabranog menija (kiflice ili pica, grickalice i sokići) i kompletna oprema za posluženje. Torta i svećica nisu uključeni.</p></details>
-      <details><summary>Da li mogu da donesem tortu?</summary><p>Torta i svećica nisu uključeni u cenu paketa. Da li možete doneti svoju tortu: <mark class="todo">[DOPUNITI INFORMACIJU]</mark></p></details>
+      <details><summary>Da li mogu da donesem tortu?</summary><p>Da, potrebno je doneti vašu tortu – torta i svećica nisu uključeni u cenu paketa.</p></details>
     </div>
   </div>
 </section>
@@ -538,7 +536,7 @@
     </div>
 
     <div class="form-card rez-card" id="rezervacija">
-      <h3 class="form-h">Zakažite termin</h3>
+      <h3 class="form-h live-h"><span class="live-dot" aria-hidden="true"></span>Slobodni termini – rezerviši</h3>
       <p class="form-sub">Izaberite datum i slobodan termin – potvrdu dobijate odmah na email.</p>
       <ol class="rez-steps" aria-label="Koraci">
         <li><b>1</b>Datum</li><li><b>2</b>Termin</li><li><b>3</b>Vaši podaci</li>
@@ -573,16 +571,23 @@
       if (first) { cfg.month = first.slice(0, 7); cfg.date = first; }
       Cal("inline", { elementOrSelector: "#my-cal-inline", calLink: CAL_USER + "/" + CAL_EVENT, config: cfg });
     }
-    // pronađi prvi dan sa slobodnim terminom (Cal.com javni API); ako ne uspe, kalendar se otvara normalno
-    var t = new Date(), end = new Date(t.getTime() + 180 * 864e5), f = function (d) { return d.toISOString().slice(0, 10); };
-    setTimeout(function () { mount(); }, 4000);
-    fetch("https://api.cal.com/v2/slots?eventTypeSlug=" + CAL_EVENT + "&username=" + CAL_USER + "&start=" + f(t) + "&end=" + f(end) + "&timeZone=Europe/Belgrade", { headers: { "cal-api-version": "2024-09-04" } })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (j) {
-        var d = j && j.data, days = d ? Object.keys(d).filter(function (k) { return /^\d{4}-\d{2}-\d{2}$/.test(k) && d[k] && d[k].length; }).sort() : [];
-        mount(days[0]);
-      })
-      .catch(function () { mount(); });
+    // Uvek pronađi prvi dan sa slobodnim terminom (uživo iz Cal.com-a, pri svakom otvaranju sajta).
+    // Pretražuje do 12 meseci unapred u blokovima od 4 meseca; ako Cal.com ne odgovori, kalendar se otvara normalno.
+    var f = function (d) { return d.toISOString().slice(0, 10); }, DAY = 864e5, now = Date.now();
+    setTimeout(function () { mount(); }, 7000);
+    function search(i) {
+      if (i >= 3) { mount(); return; }
+      var s = new Date(now + i * 120 * DAY), e = new Date(now + (i + 1) * 120 * DAY);
+      fetch("https://api.cal.com/v2/slots?eventTypeSlug=" + CAL_EVENT + "&username=" + CAL_USER + "&start=" + f(s) + "&end=" + f(e) + "&timeZone=Europe/Belgrade", { headers: { "cal-api-version": "2024-09-04" }, cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) {
+          if (!j) { mount(); return; }
+          var d = j.data || {}, days = Object.keys(d).filter(function (k) { return /^\d{4}-\d{2}-\d{2}$/.test(k) && d[k] && d[k].length; }).sort();
+          if (days.length) mount(days[0]); else search(i + 1);
+        })
+        .catch(function () { mount(); });
+    }
+    search(0);
     Cal("ui", {
       "theme": "light",
       "cssVarsPerTheme": { "light": { "cal-brand": "#FF2A85", "cal-text-emphasis": "#1A0B2E", "cal-border-emphasis": "#1A0B2E" } },

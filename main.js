@@ -2,6 +2,13 @@
 (function () {
   'use strict';
 
+  // Uvek otvori sajt na vrhu (hero), bez obzira na hash ili prethodnu poziciju skrola
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  window.scrollTo(0, 0);
+  window.addEventListener('load', function () { window.scrollTo(0, 0); });
+  window.addEventListener('pageshow', function (e) { if (e.persisted) window.scrollTo(0, 0); });
+
   // ===== PODEŠAVANJA =====
   // Forma šalje preko FormSubmit (radi na GitHub Pages, bez servera i API ključeva).
   // Prvi poslat upit šalje aktivacioni email na ovu adresu – kliknite "Activate" u tom mejlu.
