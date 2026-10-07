@@ -565,7 +565,7 @@
     });
     mo.observe(el, { childList: true, subtree: true });
     var CAL_USER = "vlada-2iou1r", CAL_EVENT = "rezervacija-termina-igraonica";
-    var cfg = { "layout": "month_view", "useSlotsViewOnSmallScreen": "true", "theme": "light" };
+    var cfg = { "layout": "month_view", "useSlotsViewOnSmallScreen": "true", "theme": "light", "timeFormat": "24" };
     function mount(first) {
       if (mount.done) return; mount.done = true;
       if (first) { cfg.month = first.slice(0, 7); cfg.date = first; }
