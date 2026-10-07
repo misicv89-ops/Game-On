@@ -166,6 +166,14 @@
     }
   });
 
+  // ===== Povratak na hero (raketa + logo u footeru) =====
+  function toHero(e) {
+    if (e) e.preventDefault();
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  }
+  document.querySelectorAll('[data-to-top]').forEach(function (a) { a.addEventListener('click', toHero); });
+
   // ===== Raketa (desktop) =====
   var rocket = null;
   if (!reduce) {
@@ -179,7 +187,7 @@
       '<span style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);font-size:46px;line-height:1"><span style="display:block;animation:wobble 1.4s ease-in-out infinite;filter:drop-shadow(0 0 12px rgba(0,229,255,.7))" aria-hidden="true">🚀</span></span></span>';
     document.body.appendChild(rk);
     var turn = rk.firstChild, trail = turn.children[0], flame = turn.children[1], up = false, lastY = window.scrollY, idle;
-    rk.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    rk.addEventListener('click', toHero);
     rocket = function (p) {
       var m = mob.matches, sc = m ? 0.62 : 1, vh = window.innerHeight;
       var top = m ? 78 : 96, bottom = vh - 110 * sc - (m ? 96 : 20);
