@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decija Akademija Sporta Nis – sportski treninzi i rodjendani na otvorenom</title>
+<meta name="description" content="DAS – Decija Akademija Sporta Nis. Redovni sportski treninzi za decu i rodjendani na otvorenom. Pozovite 063 770 8893.">
+<meta property="og:title" content="Decija Akademija Sporta Nis">
+<meta property="og:description" content="Sportski treninzi za decu i rodjendani na otvorenom u Nisu.">
+<meta property="og:image" content="assets/das-logo.jpeg">
+<link rel="icon" href="assets/das-logo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Outfit:wght@400;600;700;800;900&display=swap">
+<link rel="stylesheet" href="das.css">
+</head>
+<body>
+<a class="skip" href="#main">Preskoci na sadrzaj</a>
+
+<!-- ===== 1. NAVIGACIJA ===== -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#pocetna" aria-label="DAS – Decija Akademija Sporta Nis, pocetak stranice">
+      <span class="brand-logo"><img src="assets/das-logo.jpeg" alt="" width="48" height="48"></span>
+      <span>DAS<small>Decija Akademija Sporta</small></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Meni">☰</button>
+    <nav class="nav-links" id="navLinks" aria-label="Glavna navigacija">
+      <a href="#programi">Programi</a>
+      <a href="#rodjendani">Rodjendani</a>
+      <a href="#galerija">Galerija</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="index.html">Game On igraonica</a>
+      <a class="btn btn-green btn-sm" href="tel:+381637708893">Upisi dete</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===== 2. HERO ===== -->
+<section class="hero" id="pocetna" aria-labelledby="hero-h">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="tag">Sport na otvorenom · Nis</p>
+      <h1 id="hero-h">Decija Akademija Sporta <em>Nis</em></h1>
+      <p class="hero-lead">Treninzi na svezem vazduhu za decu koja vole da trce, igraju i rastu kroz sport. Organizujemo i nezaboravne rodjendane na otvorenom.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-green" href="#programi">Pogledaj programe</a>
+        <a class="btn btn-ghost" href="#rodjendani">Rodjendan na otvorenom</a>
+      </div>
+      <ul class="hero-pills" aria-label="Ukratko">
+        <li>Licencirani treneri</li>
+        <li>Rad u malim grupama</li>
+        <li>Treninzi na otvorenom</li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="slider" id="slider" aria-roledescription="karusel" aria-label="Galerija DAS akademije">
+        <figure class="slide on" data-label="Trening na otvorenom"><div class="ph" role="img" aria-label="Trening na otvorenom">SLIKA: TRENING NA OTVORENOM</div></figure>
+        <figure class="slide" data-label="Fudbal"><div class="ph" role="img" aria-label="Fudbal">SLIKA: FUDBAL</div></figure>
+        <figure class="slide" data-label="Rodjendan na otvorenom"><div class="ph" role="img" aria-label="Rodjendan na otvorenom">SLIKA: RODJENDAN</div></figure>
+        <figure class="slide" data-label="Takmicenje"><div class="ph" role="img" aria-label="Takmicenje">SLIKA: TAKMICENJE</div></figure>
+        <div class="slider-bar">
+          <div>
+            <p class="slider-num" id="slideNum">Slika 1 / 4</p>
+            <p class="slider-label" id="slideLabel" aria-live="polite">Trening na otvorenom</p>
+          </div>
+          <div class="slider-btns">
+            <button type="button" class="round" id="prev" aria-label="Prethodna fotografija">←</button>
+            <button type="button" class="round" id="next" aria-label="Sledeca fotografija">→</button>
+          </div>
+        </div>
+      </div>
+      <div class="dots" id="dots" role="group" aria-label="Izbor fotografije">
+        <button type="button" aria-label="Trening na otvorenom" aria-current="true"></button>
+        <button type="button" aria-label="Fudbal"></button>
+        <button type="button" aria-label="Rodjendan na otvorenom"></button>
+        <button type="button" aria-label="Takmicenje"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. PROGRAMI I RAZVOJ ===== -->
+<section class="sec sec-alt" id="programi" aria-labelledby="prog-h">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Redovni programi</p>
+      <h2 class="title" id="prog-h">Sport koji prati uzrast deteta</h2>
+      <p class="lead">Treninzi su prilagodjeni uzrastu, a svako dete napreduje svojim tempom: od prvih koraka u sportu do ozbiljnije pripreme.</p>
+    </div>
+
+    <div class="programs">
+      <article class="prog reveal">
+        <span class="prog-age">[UZRAST]</span>
+        <h3>Sportski vrtic</h3>
+        <p>Igre za motoriku, ravnotezu i koordinaciju. Prvi kontakt sa sportom kroz zabavu.</p>
+      </article>
+      <article class="prog reveal">
+        <span class="prog-age">[UZRAST]</span>
+        <h3>Polisportska skola</h3>
+        <p>Fudbal, kosarka, atletika i elementarne igre. Dete upoznaje vise sportova i pronalazi svoj.</p>
+      </article>
+      <article class="prog reveal">
+        <span class="prog-age">[UZRAST]</span>
+        <h3>Fudbal</h3>
+        <p>Tehnika, igra u timu i fer-plej. Treninzi na otvorenom terenu tokom cele sezone.</p>
+      </article>
+      <article class="prog reveal">
+        <span class="prog-age">[UZRAST]</span>
+        <h3>Atletika i kondicija</h3>
+        <p>Trcanje, skokovi i bacanja. Brzina, snaga i izdrzljivost kroz igru i takmicenje.</p>
+      </article>
+    </div>
+
+    <ul class="dev" aria-label="Sta dete razvija">
+      <li class="reveal"><span class="dev-n">1</span><div><strong>Motorika</strong><span>Koordinacija, ravnoteza, spretnost</span></div></li>
+      <li class="reveal"><span class="dev-n">2</span><div><strong>Zdravlje</strong><span>Pravilno drzanje i kondicija</span></div></li>
+      <li class="reveal"><span class="dev-n">3</span><div><strong>Timski duh</strong><span>Saradnja, pravila, fer-plej</span></div></li>
+      <li class="reveal"><span class="dev-n">4</span><div><strong>Samopouzdanje</strong><span>Postavljanje i ostvarivanje ciljeva</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 4. RODJENDANI NA OTVORENOM – PAKETI ===== -->
+<section class="sec sec-dark" id="rodjendani" aria-labelledby="pkg-h">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <p class="eyebrow">Rodjendani na otvorenom</p>
+      <h2 class="title" id="pkg-h">Izaberi paket za sportski rodjendan</h2>
+      <p class="lead">Igre, takmicenja i zabava na svezem vazduhu, uz trenere koji vode program od pocetka do kraja.</p>
+    </div>
+
+    <div class="pkgs">
+      <article class="pkg reveal" aria-labelledby="p1">
+        <h3 id="p1">Osnovni</h3>
+        <p class="pkg-sub">Za male sportiste i prvu sportsku zurku</p>
+        <p class="pkg-price">[CENA] RSD<small>[TRAJANJE] · do [BROJ] dece</small></p>
+        <ul class="checks">
+          <li>Teren na otvorenom</li>
+          <li>Trener – voditelj programa</li>
+          <li>Sportske igre i stafete</li>
+          <li>Rekviziti za sve igre</li>
+        </ul>
+        <a class="btn btn-ghost" href="tel:+381637708893">Rezervisi Osnovni</a>
+      </article>
+
+      <article class="pkg featured reveal" aria-labelledby="p2">
+        <span class="pkg-badge">Najpopularnije</span>
+        <h3 id="p2">Sampion</h3>
+        <p class="pkg-sub">Pravo takmicenje sa nagradama</p>
+        <p class="pkg-price">[CENA] RSD<small>[TRAJANJE] · do [BROJ] dece</small></p>
+        <ul class="checks">
+          <li>Sve iz paketa Osnovni</li>
+          <li>Dva trenera</li>
+          <li>Mini turnir po izboru (fudbal, stafete…)</li>
+          <li>Medalje za svu decu</li>
+          <li>Pehar za slavljenika</li>
+        </ul>
+        <a class="btn btn-green" href="tel:+381637708893">Rezervisi Sampion</a>
+      </article>
+
+      <article class="pkg reveal" aria-labelledby="p3">
+        <h3 id="p3">All-Inclusive Avantura</h3>
+        <p class="pkg-sub">Sve na jednom mestu, bez brige za roditelje</p>
+        <p class="pkg-price">[CENA] RSD<small>[TRAJANJE] · do [BROJ] dece</small></p>
+        <ul class="checks">
+          <li>Sve iz paketa Sampion</li>
+          <li>Hrana i sokovi za decu</li>
+          <li>Dekoracija prostora</li>
+          <li>Fotograf</li>
+          <li>Poklon za slavljenika</li>
+        </ul>
+        <a class="btn btn-ghost" href="tel:+381637708893">Rezervisi Avanturu</a>
+      </article>
+    </div>
+    <p class="pkg-note">Termin rodjendana zakazite pozivom na <a href="tel:+381637708893" style="color:#6EE7B7">063 770 8893</a>.</p>
+  </div>
+</section>
+
+<!-- ===== 5. GALERIJA ===== -->
+<section class="sec" id="galerija" aria-labelledby="gal-h">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Galerija</p>
+      <h2 class="title" id="gal-h">Trenutci sa terena</h2>
+    </div>
+    <div class="gallery reveal">
+      <figure class="g-big g-wide"><div class="ph light" role="img" aria-label="Ekipa na terenu">SLIKA: EKIPA</div></figure>
+      <figure><div class="ph light" role="img" aria-label="Fudbal">SLIKA: FUDBAL</div></figure>
+      <figure class="g-tall"><div class="ph light" role="img" aria-label="Trening">SLIKA: TRENING</div></figure>
+      <figure><div class="ph light" role="img" aria-label="Rodjendan">SLIKA: RODJENDAN</div></figure>
+      <figure><div class="ph light" role="img" aria-label="Medalje">SLIKA: MEDALJE</div></figure>
+      <figure><div class="ph light" role="img" aria-label="Atletika">SLIKA: ATLETIKA</div></figure>
+      <figure class="g-wide"><div class="ph light" role="img" aria-label="Takmicenje">SLIKA: TAKMICENJE</div></figure>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== 6. FOOTER ===== -->
+<footer class="ftr" id="kontakt">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div class="ftr-about">
+        <a class="brand" href="#pocetna">
+          <span class="brand-logo"><img src="assets/das-logo.jpeg" alt="" width="48" height="48" loading="lazy"></span>
+          <span>DAS<small>Decija Akademija Sporta Nis</small></span>
+        </a>
+        <p>Sportski treninzi za decu i rodjendani na otvorenom u Nisu.</p>
+      </div>
+      <div>
+        <h3>Kontakt</h3>
+        <ul>
+          <li><a href="tel:+381637708893">063 770 8893</a></li>
+          <li>Nis, [ADRESA TERENA]</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Drustvene mreze</h3>
+        <a class="social" href="https://www.instagram.com/decja_akademija_sporta_nis/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          @decja_akademija_sporta_nis
+        </a>
+      </div>
+      <div>
+        <h3>Brzi linkovi</h3>
+        <ul>
+          <li><a href="#programi">Programi</a></li>
+          <li><a href="#rodjendani">Rodjendani</a></li>
+          <li><a href="index.html">Game On igraonica</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr-bottom">
+      <span>© <span id="year">2026</span> DAS – Decija Akademija Sporta Nis</span>
+      <a href="index.html">← Nazad na Game On</a>
+    </div>
+  </div>
+</footer>
+
+<script src="das.js" defer></script>
+</body>
+</html>

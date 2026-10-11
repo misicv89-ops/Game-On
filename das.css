@@ -1,0 +1,158 @@
+/* =========================================================
+   DAS – Decija Akademija Sporta Nis
+   Paleta: zelena #10B981, plava #3B82F6, tamni slate
+   ========================================================= */
+:root{
+  --green:#10B981;--green-d:#047857;--blue:#3B82F6;--blue-d:#1D4ED8;
+  --slate-950:#020617;--slate-900:#0F172A;--slate-800:#1E293B;--slate-700:#334155;
+  --slate-500:#64748B;--slate-300:#CBD5E1;--slate-100:#F1F5F9;--white:#fff;
+  --radius:20px;--ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;font-family:'Outfit',system-ui,sans-serif;color:var(--slate-900);background:var(--white);line-height:1.6;font-size:17px}
+img{max-width:100%;display:block}
+a{color:var(--green-d)}a:hover{color:var(--blue-d)}
+h1,h2,h3{margin:0;line-height:1.1;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.wrap{width:min(1200px,100% - 40px);margin-inline:auto}
+.skip{position:absolute;left:-999px;top:8px;background:var(--white);padding:10px 16px;z-index:100}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+/* ---------- Dugmad ---------- */
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid transparent;transition:transform .2s var(--ease),background .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-green{background:var(--green);color:var(--slate-950)}.btn-green:hover{background:#34D399;color:var(--slate-950)}
+.btn-ghost{border-color:rgba(255,255,255,.5);color:var(--white)}.btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,.08);color:var(--white)}
+.btn-dark{background:var(--slate-900);color:var(--white)}.btn-dark:hover{background:var(--slate-700);color:var(--white)}
+.btn-sm{min-height:44px;padding:0 18px;font-size:15px}
+
+/* ---------- 1. Navigacija ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(15,23,42,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:72px}
+.brand{white-space:nowrap;display:flex;align-items:center;gap:12px;color:var(--white);text-decoration:none;font-weight:800;line-height:1.1}
+.brand:hover{color:var(--white)}
+.brand-logo{width:48px;height:48px;border-radius:50%;overflow:hidden;border:2px solid var(--green);flex-shrink:0;background:var(--white)}
+.brand-logo img{width:100%;height:100%;object-fit:cover;transform:scale(1.12)}
+.brand small{display:block;font-family:'Fredoka',sans-serif;font-weight:600;font-size:12px;color:var(--slate-300);letter-spacing:.04em}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{white-space:nowrap;color:var(--slate-300);text-decoration:none;font-weight:600;font-size:15px;padding:10px 14px;border-radius:999px}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.06)}
+.nav-links .btn{color:var(--slate-950);margin-left:8px}
+.nav-toggle{display:none;width:46px;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--white);font-size:22px;cursor:pointer}
+@media(max-width:1079px){
+  .nav-toggle{display:grid;place-items:center}
+  .nav-links{position:fixed;inset:72px 0 auto 0;flex-direction:column;align-items:stretch;gap:4px;padding:16px 20px 24px;background:var(--slate-900);border-bottom:1px solid rgba(255,255,255,.1);transform:translateY(-120%);visibility:hidden;transition:transform .3s var(--ease),visibility .3s}
+  .nav-links.open{transform:none;visibility:visible}
+  .nav-links a{font-size:18px;padding:14px 12px}
+  .nav-links .btn{margin:8px 0 0}
+}
+
+/* ---------- 2. Hero ---------- */
+.hero{position:relative;background:radial-gradient(1200px 600px at 85% 0%,rgba(59,130,246,.28),transparent 60%),radial-gradient(900px 500px at 0% 100%,rgba(16,185,129,.22),transparent 60%),var(--slate-900);color:var(--white);padding:clamp(48px,8vw,96px) 0 clamp(56px,8vw,104px);overflow:hidden}
+.hero-grid{display:grid;gap:clamp(32px,5vw,64px);align-items:center;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.tag{display:inline-flex;align-items:center;gap:8px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#6EE7B7}
+.tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(16,185,129,.25)}
+.hero h1{font-size:clamp(40px,6.4vw,76px);font-weight:900;margin-top:18px}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero-lead{font-size:clamp(18px,1.7vw,21px);color:var(--slate-300);margin-top:20px;max-width:560px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px;padding:0;list-style:none}
+.hero-pills li{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);font-size:15px;font-weight:600;color:var(--slate-100)}
+
+/* Slider u heroju */
+.slider{position:relative;border-radius:28px;overflow:hidden;background:var(--slate-800);aspect-ratio:4/3.4;box-shadow:0 30px 60px -20px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08)}
+.slide{position:absolute;inset:0;margin:0;opacity:0;transition:opacity .6s ease}
+.slide.on{opacity:1}
+.slide img,.slide .ph{width:100%;height:100%;object-fit:cover}
+.slider-bar{position:absolute;left:14px;right:14px;bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px 12px 18px;border-radius:18px;background:rgba(15,23,42,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.slider-num{font-family:'Fredoka',sans-serif;font-size:13px;color:#6EE7B7}
+.slider-label{font-weight:800;font-size:18px;color:var(--white)}
+.slider-btns{display:flex;gap:8px}
+.round{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;color:var(--white);font-size:18px;cursor:pointer}
+.round:hover{background:var(--green);border-color:var(--green);color:var(--slate-950)}
+.dots{display:flex;justify-content:center;gap:4px;margin-top:14px}
+.dots button{width:44px;height:44px;border:0;background:transparent;cursor:pointer;position:relative}
+.dots button::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:10px;border-radius:50%;background:var(--slate-500);transform:translate(-50%,-50%);transition:width .3s,background .3s}
+.dots button[aria-current="true"]::after{width:28px;border-radius:6px;background:var(--green)}
+
+/* Placeholder za slike (zameniti pravim fotografijama) */
+.ph{display:grid;place-items:center;background:repeating-linear-gradient(135deg,#1E293B 0 14px,#243247 14px 28px);color:var(--slate-300);font-family:'Fredoka',sans-serif;font-size:14px;letter-spacing:.08em;text-align:center;padding:12px}
+.ph.light{background:repeating-linear-gradient(135deg,#E2E8F0 0 14px,#EDF2F7 14px 28px);color:var(--slate-700)}
+
+/* ---------- Opste sekcije ---------- */
+.sec{padding:clamp(64px,9vw,112px) 0}
+.sec-alt{background:var(--slate-100)}
+.sec-dark{background:var(--slate-900);color:var(--white)}
+.sec-head{max-width:720px;margin-bottom:clamp(36px,5vw,56px)}
+.sec-head.center{margin-inline:auto;text-align:center}
+.eyebrow{font-family:'Fredoka',sans-serif;font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--green-d)}
+.sec-dark .eyebrow{color:#6EE7B7}
+.title{font-size:clamp(32px,4.4vw,52px);font-weight:900;margin-top:12px}
+.lead{font-size:clamp(17px,1.5vw,19px);color:var(--slate-700);margin-top:16px}
+.sec-dark .lead{color:var(--slate-300)}
+
+/* ---------- 3. Programi ---------- */
+.programs{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.prog{background:var(--white);border:1px solid #E2E8F0;border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:12px;transition:transform .25s var(--ease),box-shadow .25s}
+.prog:hover{transform:translateY(-4px);box-shadow:0 20px 40px -20px rgba(15,23,42,.25)}
+.prog-age{align-self:flex-start;font-family:'Fredoka',sans-serif;font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;background:#D1FAE5;color:var(--green-d)}
+.prog:nth-child(even) .prog-age{background:#DBEAFE;color:var(--blue-d)}
+.prog h3{font-size:24px;font-weight:800}
+.prog p{color:var(--slate-700);font-size:16px}
+.dev{display:grid;gap:16px;margin-top:clamp(40px,5vw,64px);padding:0;list-style:none;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.dev li{display:flex;gap:14px;align-items:flex-start;padding:20px;border-radius:16px;background:var(--slate-900);color:var(--white)}
+.dev-n{flex-shrink:0;width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:var(--green);color:var(--slate-950);font-weight:900}
+.dev li:nth-child(even) .dev-n{background:var(--blue);color:var(--white)}
+.dev strong{display:block;font-size:17px}
+.dev span{font-size:15px;color:var(--slate-300)}
+
+/* ---------- 4. Paketi ---------- */
+.pkgs{display:grid;gap:22px;align-items:stretch;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.pkg{position:relative;display:flex;flex-direction:column;border-radius:24px;padding:32px 28px;background:var(--slate-800);border:1px solid var(--slate-700)}
+.pkg.featured{background:linear-gradient(160deg,#064E3B,var(--slate-800) 70%);border:2px solid var(--green)}
+.pkg-badge{position:absolute;top:-14px;left:28px;padding:6px 14px;border-radius:999px;background:var(--green);color:var(--slate-950);font-family:'Fredoka',sans-serif;font-size:13px;font-weight:700}
+.pkg h3{font-size:28px;font-weight:900}
+.pkg-sub{color:var(--slate-300);font-size:15px;margin-top:6px}
+.pkg-price{margin:24px 0;padding:18px 0;border-block:1px solid rgba(255,255,255,.1);font-size:clamp(28px,3vw,36px);font-weight:900}
+.pkg-price small{display:block;font-size:14px;font-weight:600;color:var(--slate-300)}
+.checks{list-style:none;margin:0 0 28px;padding:0;display:grid;gap:12px;flex:1}
+.checks li{display:flex;gap:12px;font-size:16px;color:var(--slate-100)}
+.checks li::before{content:"✓";flex-shrink:0;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:rgba(16,185,129,.18);color:#6EE7B7;font-weight:900;font-size:13px}
+.pkg .btn{width:100%}
+.pkg-note{text-align:center;color:var(--slate-300);font-size:15px;margin-top:28px}
+
+/* ---------- 5. Galerija ---------- */
+.gallery{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:160px}
+.gallery figure{margin:0;border-radius:16px;overflow:hidden;position:relative}
+.gallery figure img,.gallery figure .ph{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.gallery figure:hover img{transform:scale(1.05)}
+.g-wide{grid-column:span 2}
+.g-tall{grid-row:span 2}
+@media(min-width:760px){
+  .gallery{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:200px;gap:16px}
+  .g-big{grid-column:span 2;grid-row:span 2}
+}
+
+/* ---------- 6. Footer ---------- */
+.ftr{background:var(--slate-950);color:var(--slate-300);padding:clamp(48px,6vw,72px) 0 28px;font-size:16px}
+.ftr-grid{display:grid;gap:36px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.ftr h3{color:var(--white);font-size:17px;font-weight:800;margin-bottom:14px}
+.ftr ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ftr a{color:var(--slate-100);text-decoration:none}
+.ftr a:hover{color:var(--green)}
+.ftr-about p{margin-top:16px;max-width:320px}
+.social{max-width:100%;min-width:0;overflow-wrap:anywhere;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--slate-700)}
+.social:hover{border-color:var(--green)}
+.social svg{width:20px;height:20px}
+.ftr-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:48px;padding-top:24px;border-top:1px solid var(--slate-800);font-size:14px}
+
+/* ---------- Animacija pojavljivanja ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .slide,.btn,.prog,.gallery img{transition:none}
+}

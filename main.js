@@ -9,9 +9,9 @@
   window.addEventListener('load', function () { window.scrollTo(0, 0); });
   window.addEventListener('pageshow', function (e) { if (e.persisted) window.scrollTo(0, 0); });
 
-  // ===== PODEŠAVANJA =====
-  // Forma šalje preko FormSubmit (radi na GitHub Pages, bez servera i API ključeva).
-  // Prvi poslat upit šalje aktivacioni email na ovu adresu – kliknite "Activate" u tom mejlu.
+  // ===== PODESAVANJA =====
+  // Forma salje preko FormSubmit (radi na GitHub Pages, bez servera i API kljuceva).
+  // Prvi poslat upit salje aktivacioni email na ovu adresu – kliknite "Activate" u tom mejlu.
   var FORM_ENDPOINT = 'https://formsubmit.co/ajax/gameon.igraonica@gmail.com';
   var PHONE_LABEL = '064 444 0244';
   var PHONE_HREF = 'tel:+381644440244';
@@ -64,16 +64,16 @@
 
   // ===== Hero slider =====
   var slides = $$('#slider .slide'), dots = $$('#dots button');
-  var labels = ['Sportski teren', 'VR Meta Quest zona', 'Kafić za roditelje', 'Rođendanska sala'];
+  var labels = ['Sportski teren', 'VR Meta Quest zona', 'Kafic za roditelje', 'Rodjendanska sala', 'Sportski rodjendan napolju', 'Igre u prirodi', 'Akademija sporta – trening'];
   var cur = 0, timer;
   function show(i) {
     cur = (i + slides.length) % slides.length;
     slides.forEach(function (s, k) { s.classList.toggle('on', k === cur); });
     dots.forEach(function (d, k) { d.setAttribute('aria-current', k === cur ? 'true' : 'false'); });
-    $('#slideNum').textContent = 'Zona ' + (cur + 1) + ' / ' + slides.length;
+    $('#slideNum').textContent = 'Slika ' + (cur + 1) + ' / ' + slides.length;
     $('#slideLabel').textContent = labels[cur];
   }
-  function auto() { clearInterval(timer); if (!reduce) timer = setInterval(function () { show(cur + 1); }, 4500); }
+  function auto() { clearInterval(timer); if (!reduce) timer = setInterval(function () { show(cur + 1); }, 2500); }
   $('#prev').addEventListener('click', function () { show(cur - 1); auto(); });
   $('#next').addEventListener('click', function () { show(cur + 1); auto(); });
   dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k); auto(); }); });
@@ -122,20 +122,32 @@
   $$('[data-pkg]').forEach(function (b) { b.addEventListener('click', function () { choosePackage(); }); });
 
   // ===== Kalkulator =====
-  var kids = $('#kids'), total = $('#calcTotal');
+  var kids = $('#kids'), total = $('#calcTotal'), range = $('#kidsRange'), detail = $('#calcDetail');
   function fmt(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' RSD'; }
   function calc() {
-    var n = Math.max(10, Math.min(40, parseInt(kids.value, 10) || 10));
-    var p = $('input[name="calcPkg"]:checked');
-    total.textContent = fmt(n * parseInt(p.value, 10));
-    return { n: n, name: p.getAttribute('data-name') };
+    var n = Math.max(20, Math.min(40, parseInt(kids.value, 10) || 20));
+    var p = $('input[name="calcPkg"]:checked'), c = parseInt(p.value, 10);
+    total.textContent = fmt(n * c);
+    if (range) { range.value = n; range.style.setProperty('--p', ((n - 20) / 20 * 100) + '%'); }
+    if (detail) detail.textContent = n + ' dece × ' + fmt(c);
+    return { n: n, name: p.getAttribute('data-name'), sum: fmt(n * c) };
   }
   kids.addEventListener('input', calc);
   kids.addEventListener('change', function () { kids.value = calc().n; });
-  $('#kidsMinus').addEventListener('click', function () { kids.value = Math.max(10, (parseInt(kids.value, 10) || 10) - 1); calc(); });
-  $('#kidsPlus').addEventListener('click', function () { kids.value = Math.min(40, (parseInt(kids.value, 10) || 10) + 1); calc(); });
+  $('#kidsMinus').addEventListener('click', function () { kids.value = Math.max(20, (parseInt(kids.value, 10) || 20) - 1); calc(); });
+  $('#kidsPlus').addEventListener('click', function () { kids.value = Math.min(40, (parseInt(kids.value, 10) || 20) + 1); calc(); });
   $$('input[name="calcPkg"]').forEach(function (r) { r.addEventListener('change', calc); });
-  $('#calcBook').addEventListener('click', function () { var c = calc(); choosePackage(c.name, c.n); });
+  if (range) range.addEventListener('input', function () { kids.value = range.value; calc(); });
+  $('#calcBook').addEventListener('click', function () {
+    var c = calc();
+    var notes = 'Paket: ' + c.name + ' | Broj dece: ' + c.n + ' | Procenjena cena: ' + c.sum;
+    window.GO_CAL_NOTES = notes;
+    var pk = $('#rezPick');
+    if (pk) { $('#rezPickV').textContent = c.name.split(' — ')[0] + ' · ' + c.n + ' dece'; $('#rezPickP').textContent = c.sum; pk.hidden = false; }
+    if (window.goCalPrefill) window.goCalPrefill(notes);
+    if (window.goCalLoad) window.goCalLoad();
+    choosePackage(c.name, c.n);
+  });
   calc();
 
   // ===== Galerija + lightbox =====
@@ -148,7 +160,7 @@
   }
   function lbOpen(i) { lastFocus = document.activeElement; lbShow(i); lb.hidden = false; document.body.style.overflow = 'hidden'; $('#lbClose').focus(); }
   function lbClose() { lb.hidden = true; document.body.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
-  gImgs.forEach(function (img, i) { img.parentNode.setAttribute('aria-label', 'Uvećaj: ' + img.alt); img.parentNode.addEventListener('click', function () { lbOpen(i); }); });
+  gImgs.forEach(function (img, i) { img.parentNode.setAttribute('aria-label', 'Uvecaj: ' + img.alt); img.parentNode.addEventListener('click', function () { lbOpen(i); }); });
   $('#lbClose').addEventListener('click', lbClose);
   $('#lbPrev').addEventListener('click', function () { lbShow(gi - 1); });
   $('#lbNext').addEventListener('click', function () { lbShow(gi + 1); });
@@ -174,6 +186,13 @@
   }
   document.querySelectorAll('[data-to-top]').forEach(function (a) { a.addEventListener('click', toHero); });
 
+  // ===== DAS oblacic =====
+  var bub = document.createElement('a');
+  bub.className = 'das-bubble'; bub.href = 'das.html'; bub.title = 'DAS – Decija akademija sporta';
+  bub.setAttribute('aria-label', 'DAS – Decija akademija sporta');
+  bub.innerHTML = '<span><img src="assets/das-logo.jpeg" alt=""></span>';
+  document.body.appendChild(bub);
+
   // ===== Raketa (desktop) =====
   var rocket = null;
   if (!reduce) {
@@ -190,9 +209,13 @@
     rk.addEventListener('click', toHero);
     rocket = function (p) {
       var m = mob.matches, sc = m ? 0.62 : 1, vh = window.innerHeight;
-      var top = m ? 78 : 96, bottom = vh - 110 * sc - (m ? 96 : 20);
-      rk.style.transform = 'translateY(' + (top + p * (bottom - top)).toFixed(1) + 'px) scale(' + sc + ')';
-      rk.style.opacity = m && mnav.classList.contains('open') ? '0' : '1';
+      var bh = 64 * sc + 14, top = (m ? 78 : 96) + bh, bottom = vh - 110 * sc - (m ? 96 : 20);
+      var y = top + p * (bottom - top);
+      rk.style.transform = 'translateY(' + y.toFixed(1) + 'px) scale(' + sc + ')';
+      bub.style.transform = 'translateY(' + (y - bh).toFixed(1) + 'px) scale(' + sc + ')';
+      bub.style.transformOrigin = '100% 0';
+      rk.style.opacity = bub.style.opacity = m && mnav.classList.contains('open') ? '0' : '1';
+      bub.style.pointerEvents = bub.style.opacity === '0' ? 'none' : '';
       var dy = window.scrollY - lastY, v = Math.min(1, Math.abs(dy) / 40); lastY = window.scrollY;
       if (dy < -1 && !up) { up = true; turn.style.transform = 'rotate(180deg)'; }
       else if (dy > 1 && up) { up = false; turn.style.transform = 'rotate(0deg)'; }
