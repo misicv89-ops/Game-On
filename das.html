@@ -47,6 +47,8 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 @media(min-width:1040px){.das-mnav{display:none!important}}
 .das-nav a,.das-back{white-space:nowrap}
 @media(max-width:719px){.gal-head{flex-direction:column;align-items:center;text-align:center}.gal-head .lead{margin-left:auto;margin-right:auto}}
+@media(max-width:719px){body>footer{padding-bottom:calc(24px + 76px)!important}}
+@media(max-width:719px){.das-live-h{flex-direction:column;align-items:flex-start!important}}
 @media(max-width:719px){.das-pill{display:none!important}
 .das-pkgs:not(.das-progs-dark) .pkg h3,.das-pkgs:not(.das-progs-dark) .pkg h3+p{text-align:center}
 .das-pkgs:not(.das-progs-dark) .pkg h3.one-line{white-space:nowrap;font-size:clamp(17px,5.4vw,24px);letter-spacing:-.5px}}
@@ -93,6 +95,26 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 .das-progs-dark .pkg[style]{box-shadow:6px 6px 0 #7CE08A}
 .das-progs-dark .pkg[style] .checks li::before{background:var(--yellow)}
 @media(min-width:760px){.das-progs-dark .pkg[style]{transform:translateY(-8px)}}
+#programi .pkg{padding:clamp(24px,4vw,48px);animation:progGlow 4s ease-in-out infinite}
+@keyframes progGlow{0%,100%{box-shadow:6px 6px 0 #7CE08A,0 0 0 0 rgba(124,224,138,0)}50%{box-shadow:6px 6px 0 #7CE08A,0 0 34px 4px rgba(124,224,138,.35)}}
+@media(prefers-reduced-motion:reduce){#programi .pkg{animation:none}}
+.das-kicker{background:linear-gradient(90deg,#7CE08A,#FFDF00,#10B981,#7CE08A);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:kickerFlow 5s linear infinite;filter:drop-shadow(3px 3px 0 #1A0B2E)}
+.js .das-kicker{opacity:0}
+.js .das-kicker.in{opacity:1;animation:kickerFlow 5s linear infinite,kickerPop .9s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes kickerFlow{to{background-position:300% 0}}
+@keyframes kickerPop{0%{opacity:0;transform:scale(.7) translateY(20px)}100%{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.das-kicker,.js .das-kicker.in{animation:none;opacity:1}}
+#programi .pkg h3{font-size:clamp(26px,3.4vw,38px)}
+#programi .pkg h3+p{font-size:clamp(17px,1.6vw,20px)!important;max-width:900px}
+#programi .facts{gap:12px 32px}
+#programi .facts>div{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:4px;text-align:left}
+#programi .facts dd{text-align:left}
+@media(max-width:719px){#programi .facts>div{align-items:center;text-align:center}#programi .facts dt,#programi .facts dd{text-align:center;width:100%}#programi .pkg h3,#programi .pkg h3+p{text-align:center;margin-left:auto;margin-right:auto}#programi .pkg-sub{text-align:center}#programi .checks li{flex-direction:column;align-items:center;text-align:center;gap:6px}#programi .checks li span{display:block}}
+#programi .facts dd{font-size:clamp(18px,1.8vw,22px)}
+#programi .checks li{font-size:clamp(16px,1.5vw,19px);line-height:1.6;margin-bottom:10px}
+#programi .pkg-sub{font-size:15px}
+#programi [data-trial]{font-size:15px;min-height:52px;width:auto;align-self:center;padding:12px 32px;margin-top:12px!important}
+@media(max-width:719px){#programi [data-trial]{width:100%;font-size:14px;padding:12px 18px}}
 .rez-pick{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:0 0 14px;padding:12px 16px;background:#fff;border:2px solid var(--ink);border-radius:16px;box-shadow:3px 3px 0 #10B981}
 .rez-pick-l{font-family:'Fredoka',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#5A4A6E}
 .rez-sel{flex:1 1 240px;min-width:0;min-height:44px;padding:8px 36px 8px 12px;border:2px solid var(--ink);border-radius:12px;background:#F3FAF2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%231A0B2E' stroke-width='2.5'/%3E%3C/svg%3E") no-repeat right 12px center;-webkit-appearance:none;appearance:none;font:inherit;font-weight:700;font-size:16px;color:var(--ink);cursor:pointer}
@@ -257,52 +279,46 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});})
   <section class="sec dark" id="programi" aria-labelledby="prog-h" style="border-top:2px solid var(--ink)">
     <div class="wrap">
       <div class="sec-head center">
-        <p style="display:inline-block;margin:0 0 14px;background:rgba(16,185,129,.15);color:#7CE08A;border:2px solid #10B981;border-radius:999px;padding:5px 14px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase">Skolica sporta</p>
-        <h2 class="title" id="prog-h">Programi i treninzi</h2>
-        <p class="lead lead-dark">Kroz igru razvijamo motoriku, snagu i pravilno drzanje tela.</p>
-        <p style="display:inline-block;margin:16px 0 0;background:#10B981;color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:7px 16px;font-weight:900;font-size:14px;letter-spacing:.5px;text-transform:uppercase;box-shadow:3px 3px 0 #7CE08A">★ Prvi probni trening je besplatan</p>
+        <p class="das-kicker" style="display:block;margin:0 0 16px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(28px,5.2vw,58px);line-height:1.05;letter-spacing:clamp(1px,.4vw,4px);text-transform:uppercase">Decija akademija sporta</p>
+        <h2 class="title" id="prog-h">Sportski programi za decu</h2>
+        <p class="lead lead-dark">Kroz igru, poligone spretnosti i strucan rad razvijamo motoriku, pravilno drzanje tela i sportski duh.</p>
+        <p style="display:inline-block;margin:16px 0 0;background:#10B981;color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:7px 16px;font-weight:900;font-size:14px;letter-spacing:.5px;text-transform:uppercase;box-shadow:3px 3px 0 #7CE08A">★ Prvi probni trening je potpuno besplatan za sve uzraste!</p>
       </div>
-      <div class="pkgs das-pkgs das-progs-dark">
-      <article class="pkg">
-        <p class="pkg-tag">Program 01 <span aria-hidden="true">🧸</span></p>
-        <h3>Prvi sportski koraci</h3>
-        <p style="margin:8px 0 20px;font-size:17px;line-height:1.55;color:#3A2A4E">Prvi susret sa sportom kroz igru i poligoncice.</p>
-        <dl class="facts"><div><dt>Uzrast</dt><dd>2 – 4 god</dd></div><div><dt>Trening</dt><dd>60 min</dd></div></dl>
-        <p class="pkg-sub">Sta deca rade</p>
-        <ul class="checks das-checks">
-          <li>Osnovna motorika</li>
-          <li>Ravnoteza i koordinacija</li>
-          <li>Razvoj psiho-motorike</li>
-        </ul>
-        <a class="btn das-btn-green" href="#kontakt" data-trial data-note="Probni trening: Prvi sportski koraci (2-4 god)" data-prog="Probni trening - Prvi sportski koraci (2-4 god)" style="margin-top:auto">Zakazi probni trening</a>
-      </article>
+      <div class="pkgs das-pkgs das-progs-dark" style="grid-template-columns:minmax(0,1fr);max-width:none">
       <article class="pkg" style="background:#047857;color:#fff">
-        <span class="shine" aria-hidden="true" style="position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0"></span>
-        <p class="pkg-flag">★ Najtrazenije</p>
-        <p class="pkg-tag" style="color:#D1FAE5">Program 02 <span aria-hidden="true">🤸</span></p>
-        <h3>Skolica sporta &amp; Poligoni</h3>
-        <p style="margin:8px 0 20px;font-size:17px;line-height:1.55;color:#fff">Poligoni i probni treninzi raznih sportova.</p>
-        <dl class="facts"><div><dt>Uzrast</dt><dd>4 – 8 god</dd></div><div><dt>Trening</dt><dd>60 min</dd></div></dl>
-        <p class="pkg-sub">Sta deca rade</p>
+        <p class="pkg-flag">★ Sve starosne grupe</p>
+        <p class="pkg-tag" style="color:#D1FAE5">2 – 12 godina <span aria-hidden="true">🤸</span></p>
+        <h3>Skolica sporta &amp; Dzudo sekcija</h3>
+        <p style="margin:8px 0 20px;font-size:17px;line-height:1.55;color:#fff">Sveobuhvatan sportski razvoj prilagodjen uzrastu vaseg deteta – od prvih koraka u sportu do osnovnih borilackih vestina i dzudo padova.</p>
+        <dl class="facts" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))">
+          <div><dt>Uzrast</dt><dd>2 – 12 godina</dd></div>
+          <div><dt>Trajanje treninga</dt><dd>60 min</dd></div>
+          <div><dt>Ucestalost</dt><dd>3x nedeljno</dd></div>
+          <div><dt>Mesecna clanarina</dt><dd><span style="color:#FFDF00">X.XXX RSD</span> / mesecno<small style="display:block;margin-top:4px;font-size:14px;font-weight:600;color:#D1FAE5">Popust za drugo dete / brata ili sestru</small></dd></div>
+          <div><dt>Termini</dt><dd><span style="white-space:nowrap">Utorak i Cetvrtak 18h</span><span style="display:block">Subota 10h</span></dd></div>
+        </dl>
+        <p class="pkg-sub">Sta radimo na treninzima po uzrastima</p>
         <ul class="checks das-checks">
-          <li>Poligoni spretnosti</li>
-          <li>Agilnost i pravilno drzanje</li>
-          <li>Gimnastika, atletika, lopta</li>
+          <li><span><b>2–4 god (Prvi koraci):</b> razvoj osnovne motorike, ravnoteze i koordinacije kroz igru i poligoncice.</span></li>
+          <li><span><b>4–8 god (Skolica sporta &amp; Poligoni):</b> poligoni spretnosti, pravilno drzanje ledja/stopala, osnove gimnastike i igara sa loptom.</span></li>
+          <li><span><b>8–12 god (Sportsko usmeravanje &amp; Dzudo):</b> kondicija, snaga, osnove dzudo vestine, pravilni padovi i jacanje discipline.</span></li>
         </ul>
-        <a class="btn btn-dark" href="#kontakt" data-trial data-note="Probni trening: Skolica sporta i Poligoni (4-8 god)" data-prog="Probni trening - Školica sporta &amp; Poligoni (4-8 god)" style="margin-top:auto">Zakazi probni trening</a>
-      </article>
-      <article class="pkg">
-        <p class="pkg-tag">Program 03 <span aria-hidden="true">🥋</span></p>
-        <h3>Sportsko usmeravanje &amp; Dzudo</h3>
-        <p style="margin:8px 0 20px;font-size:17px;line-height:1.55;color:#3A2A4E">Priprema za ozbiljniji sport i disciplinu.</p>
-        <dl class="facts"><div><dt>Uzrast</dt><dd>8 – 12 god</dd></div><div><dt>Trening</dt><dd>60 min</dd></div></dl>
-        <p class="pkg-sub">Sta deca rade</p>
-        <ul class="checks das-checks">
-          <li>Kondicija i snaga</li>
-          <li>Agilnost</li>
-          <li>Dzudo – disciplina i pravilni padovi</li>
-        </ul>
-        <a class="btn das-btn-green" href="#kontakt" data-trial data-note="Probni trening: Sportsko usmeravanje i Dzudo (8-12 god)" data-prog="Probni trening - Sportsko usmeravanje &amp; Džudo (8-12 god)" style="margin-top:auto">Zakazi probni trening</a>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px;margin:8px 0 24px">
+          <div style="background:rgba(0,0,0,.18);border:2px solid #10B981;border-radius:16px;padding:16px 18px">
+            <p style="margin:0 0 6px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#7CE08A">📍 Gde se trenira</p>
+            <p style="margin:0;font-size:16px;line-height:1.55;color:#fff">Treninzi se odrzavaju na otvorenom terenu i u zatvorenom prostoru.</p>
+            <p style="margin:10px 0 0;font-size:16px;line-height:1.5;color:#fff"><b style="color:#7CE08A">Lokacija treninga:</b> <span id="dasLokacija">uskoro</span></p>
+          </div>
+          <div style="background:rgba(0,0,0,.18);border:2px solid #10B981;border-radius:16px;padding:16px 18px">
+            <p style="margin:0 0 6px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#7CE08A">🎒 Sta poneti na prvi trening</p>
+            <p style="margin:0;font-size:16px;line-height:1.55;color:#fff">Obicna pamucna majica, trenerka ili sorc, ciste patike i flasica vode.</p>
+          </div>
+          <div style="background:rgba(0,0,0,.18);border:2px solid #10B981;border-radius:16px;padding:16px 18px">
+            <p style="margin:0 0 6px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#7CE08A">🏅 Licencirani treneri</p>
+            <p style="margin:0;font-size:16px;line-height:1.55;color:#fff">Treninge vode licencirani profesori fizickog vaspitanja i strucni sportski treneri sa iskustvom u radu sa decom.</p>
+          </div>
+        </div>
+        <a class="btn btn-dark" href="#kontakt" data-trial data-note="Probni trening: Skolica sporta (svi uzrasti)" data-prog="Probni trening - Školica sporta (Svi uzrasti)" style="margin-top:auto">Rezervisi besplatan probni trening</a>
       </article>
       </div>
     </div>
@@ -323,14 +339,14 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});})
         </address>
         <div class="socials">
           <a class="soc das-soc" href="https://www.instagram.com/decja_akademija_sporta_nis/" target="_blank" rel="noopener">Instagram</a>
-          <a class="soc das-soc" href="https://www.facebook.com/decijaakademija.sporta/" target="_blank" rel="noopener">Facebook</a>
+          <a class="soc das-soc" href="https://www.facebook.com/decijaakademija.sporta/?locale=sr_RS" target="_blank" rel="noopener">Facebook</a>
         </div>
         <div class="map das-map">
           <iframe title="Mapa – DAS, Obrenoviceva 44, Nis" src="https://maps.google.com/maps?q=Obrenovi%C4%87eva%2044%2C%20Ni%C5%A1%2C%20Serbia&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
       <div class="form-card rez-card das-form" id="rezervacija">
-        <h3 class="form-h" style="display:flex;align-items:center;gap:10px"><span class="das-live" aria-hidden="true"></span>Slobodni termini – rezervisi</h3>
+        <h3 class="form-h das-live-h" style="display:flex;align-items:center;gap:10px"><span class="das-live" aria-hidden="true"></span>Slobodni termini – rezervisi</h3>
         <p class="form-sub">Izaberite datum i slobodan termin – potvrdu dobijate odmah na email.</p>
         <ol class="rez-steps" aria-label="Koraci">
           <li><b>1</b>Datum</li><li><b>2</b>Termin</li><li><b>3</b>Vasi podaci</li>
@@ -339,9 +355,7 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});})
           <label class="rez-pick-l" for="rezSel">Program ili paket</label>
           <select id="rezSel" class="rez-sel">
             <option value="">Izaberite (ili u kalendaru)</option>
-            <option value="Probni trening - Prvi sportski koraci (2-4 god)">Probni trening - Prvi sportski koraci (2-4 god)</option>
-            <option value="Probni trening - Školica sporta &amp; Poligoni (4-8 god)">Probni trening - Skolica sporta &amp; Poligoni (4-8 god)</option>
-            <option value="Probni trening - Sportsko usmeravanje &amp; Džudo (8-12 god)">Probni trening - Sportsko usmeravanje &amp; Dzudo (8-12 god)</option>
+            <option value="Probni trening - Školica sporta (Svi uzrasti)">Probni trening - Skolica sporta (svi uzrasti)</option>
             <option value="Rođendan u prirodi - Paket 1 (Osnovni)">Rodjendan u prirodi - Paket 1 (Osnovni)</option>
             <option value="Rođendan u prirodi - Paket 2 (Srednji)">Rodjendan u prirodi - Paket 2 (Srednji)</option>
             <option value="Rođendan u prirodi - Paket 3 (PREMIUM)">Rodjendan u prirodi - Paket 3 (PREMIUM)</option>
@@ -369,6 +383,15 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});})
     <a href="index.html" style="color:#7CE08A;font-weight:700;text-decoration:none">← Nazad na Game On – Decija igraonica</a>
   </div>
 </footer>
+<div class="mbar" id="dasMbar">
+  <a class="btn btn-light" href="tel:+381637708893">Pozovi</a>
+  <a class="btn" href="#rezervacija" style="background:#2E9E3A;color:#fff;border:2px solid var(--ink)">Rezervisi</a>
+</div>
+<script>
+(function(){var m=document.getElementById('dasMbar'),h=document.getElementById('pocetna'),r=document.getElementById('rezervacija');if(!m||!h)return;var t=false;
+function u(){t=false;var past=h.getBoundingClientRect().bottom<80;var inR=r&&r.getBoundingClientRect().top<innerHeight*.75&&r.getBoundingClientRect().bottom>0;m.classList.toggle('show',past&&!inR);}
+addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(u);}},{passive:true});u();})();
+</script>
 <script>
 (function () {
   var v = document.getElementById('dasVideo'), btn = document.getElementById('vidSound');
@@ -474,21 +497,24 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});})
       el.classList.add('ready'); mo.disconnect();
     });
     mo.observe(el, { childList: true, subtree: true });
-    var CAL_USER = "vlada-2iou1r", CAL_EVENT = "das";
+    // Podrazumevano: besplatan probni trening. Stari link "das" (kapara) samo za rodjendanske pakete.
+    var CAL_USER = "vlada-2iou1r", CAL_TRIAL = "probni-trening-das", CAL_BDAY = "das";
+    function ev() { return (window.GO_CAL_PROG || "").indexOf("Ro") === 0 ? CAL_BDAY : CAL_TRIAL; }
     var cfg = { "layout": "month_view", "useSlotsViewOnSmallScreen": "true", "theme": "light", "timeFormat": "24" };
     function mount(first) {
       if (mount.done) return; mount.done = true;
       if (first) { cfg.month = first.slice(0, 7); cfg.date = first; }
       if (window.GO_CAL_NOTES) cfg.notes = window.GO_CAL_NOTES;
       if (window.GO_CAL_PROG) cfg.Program = window.GO_CAL_PROG;
-      Cal("inline", { elementOrSelector: "#my-cal-inline", calLink: CAL_USER + "/" + CAL_EVENT, config: cfg });
+      Cal("inline", { elementOrSelector: "#my-cal-inline", calLink: CAL_USER + "/" + ev(), config: cfg });
     }
     window.goCalPrefill = function (notes) {
       if (!mount.done) return;
       cfg.notes = notes;
+      delete cfg.month; delete cfg.date;
       if (window.GO_CAL_PROG) cfg.Program = window.GO_CAL_PROG; else delete cfg.Program;
       el.innerHTML = '<div id="my-cal-inline-' + Date.now() + '"></div>';
-      Cal("inline", { elementOrSelector: '#' + el.firstChild.id, calLink: CAL_USER + "/" + CAL_EVENT, config: cfg });
+      Cal("inline", { elementOrSelector: '#' + el.firstChild.id, calLink: CAL_USER + "/" + ev(), config: cfg });
     };
     // Uvek pronadji prvi dan sa slobodnim terminom (uzivo iz Cal.com-a, pri svakom otvaranju sajta).
     // Pretrazuje do 12 meseci unapred u blokovima od 4 meseca; ako Cal.com ne odgovori, kalendar se otvara normalno.
@@ -497,7 +523,7 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});})
     function search(i) {
       if (i >= 3) { mount(); return; }
       var s = new Date(now + i * 120 * DAY), e = new Date(now + (i + 1) * 120 * DAY);
-      fetch("https://api.cal.com/v2/slots?eventTypeSlug=" + CAL_EVENT + "&username=" + CAL_USER + "&start=" + f(s) + "&end=" + f(e) + "&timeZone=Europe/Belgrade", { headers: { "cal-api-version": "2024-09-04" }, cache: "no-store" })
+      fetch("https://api.cal.com/v2/slots?eventTypeSlug=" + ev() + "&username=" + CAL_USER + "&start=" + f(s) + "&end=" + f(e) + "&timeZone=Europe/Belgrade", { headers: { "cal-api-version": "2024-09-04" }, cache: "no-store" })
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (j) {
           if (!j) { mount(); return; }
@@ -566,5 +592,6 @@ document.getElementById('heroBook').addEventListener('click', function (e) {
   });
 })();
 </script>
+<script>(function(){var k=document.querySelector('.das-kicker');if(!k)return;document.documentElement.classList.add('js');if(!('IntersectionObserver' in window)){k.classList.add('in');return;}var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){k.classList.add('in');o.disconnect();}},{threshold:.4});o.observe(k);})();</script>
 </body>
 </html>

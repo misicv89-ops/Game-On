@@ -148,6 +148,14 @@ button,input,select,textarea{font:inherit;color:inherit}
   .hero-cta,.trust{justify-content:center}
   .hero-cta .btn{flex:1 1 100%}
   .levelup{width:64px;height:64px;font-size:11px;top:-14px;right:-4px}
+  .slider{box-shadow:5px 5px 0 var(--ink)}
+  .slider-bar{padding:14px 16px;align-items:center}
+  .slider-bar>div:first-child{min-width:0;flex:1}
+  .slider-label{font-size:17px;line-height:1.25;text-wrap:balance}
+  .slider-btns{flex:none}
+  .hero-visual .slider{transform:none!important}
+  .k-br{display:block;height:0;overflow:hidden}
+  .dots{margin-top:22px;margin-bottom:8px;flex-wrap:wrap}
 }
 
 /* marquee */
@@ -242,6 +250,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media(max-width:719px){
   .calc{text-align:center}
   .seg legend{text-align:center}
+  .seg{flex-direction:column;flex-wrap:nowrap}
+  .seg label{flex:0 0 auto;width:100%}
   .stepper{flex-wrap:nowrap;justify-content:center;gap:8px}
   .stepper-l{margin-right:6px;white-space:nowrap}
   .stepper input{width:64px}
