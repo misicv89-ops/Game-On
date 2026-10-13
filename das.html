@@ -102,6 +102,10 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 .js .das-kicker{opacity:0}
 .js .das-kicker.in{opacity:1;animation:kickerFlow 5s linear infinite,kickerPop .9s cubic-bezier(.3,1.5,.5,1) both}
 @keyframes kickerFlow{to{background-position:300% 0}}
+.das-gym{display:inline-block;transform-origin:50% 80%}
+#programi.in-view .das-gym{animation:dasGym 2.4s ease-in-out infinite}
+@keyframes dasGym{0%{transform:translateY(0) rotate(0)}12%{transform:translateY(-10px) rotate(-8deg)}24%{transform:translateY(0) rotate(0) scaleY(.88)}36%{transform:translateY(-12px) rotate(8deg)}48%{transform:translateY(0) scaleY(.9)}62%{transform:translateY(-4px) rotate(180deg)}76%{transform:translateY(-14px) rotate(360deg)}88%{transform:translateY(0) rotate(360deg) scaleY(.9)}100%{transform:translateY(0) rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){#programi.in-view .das-gym{animation:none}}
 @keyframes kickerPop{0%{opacity:0;transform:scale(.7) translateY(20px)}100%{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.das-kicker,.js .das-kicker.in{animation:none;opacity:1}}
 #programi .pkg h3{font-size:clamp(26px,3.4vw,38px)}
@@ -282,14 +286,13 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});})
         <p class="das-kicker" style="display:block;margin:0 0 16px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(28px,5.2vw,58px);line-height:1.05;letter-spacing:clamp(1px,.4vw,4px);text-transform:uppercase">Decija akademija sporta</p>
         <h2 class="title" id="prog-h">Sportski programi za decu</h2>
         <p class="lead lead-dark">Kroz igru, poligone spretnosti i strucan rad razvijamo motoriku, pravilno drzanje tela i sportski duh.</p>
-        <p style="display:inline-block;margin:16px 0 0;background:#10B981;color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:7px 16px;font-weight:900;font-size:14px;letter-spacing:.5px;text-transform:uppercase;box-shadow:3px 3px 0 #7CE08A">★ Prvi probni trening je potpuno besplatan za sve uzraste!</p>
       </div>
       <div class="pkgs das-pkgs das-progs-dark" style="grid-template-columns:minmax(0,1fr);max-width:none">
       <article class="pkg" style="background:#047857;color:#fff">
-        <p class="pkg-flag">★ Sve starosne grupe</p>
-        <p class="pkg-tag" style="color:#D1FAE5">2 – 12 godina <span aria-hidden="true">🤸</span></p>
-        <h3>Skolica sporta &amp; Dzudo sekcija</h3>
-        <p style="margin:8px 0 20px;font-size:17px;line-height:1.55;color:#fff">Sveobuhvatan sportski razvoj prilagodjen uzrastu vaseg deteta – od prvih koraka u sportu do osnovnih borilackih vestina i dzudo padova.</p>
+        <p style="align-self:center;margin:0 0 18px;background:#FFDF00;color:#1A0B2E;border:2px solid #1A0B2E;border-radius:999px;padding:8px 18px;font-weight:900;font-size:14px;letter-spacing:.5px;text-transform:uppercase;text-align:center;box-shadow:3px 3px 0 #1A0B2E;text-wrap:balance">★ Prvi probni trening je potpuno besplatan za sve uzraste!</p>
+        <h3 class="das-h" style="margin:0">Skolica sporta &amp; Sportske sekcije <span aria-hidden="true" class="das-gym">🤸</span></h3>
+        <p class="das-intro" style="margin:10px 0 18px;font-size:18px;line-height:1.6;color:#fff;max-width:62ch;text-wrap:pretty">U Decijoj Akademiji Sporta (DAS) akcenat je na <b style="color:#FFDF00">bazicnom razvoju motorike, koordinacije i pravilnog rasta</b> – kroz elemente vise razlicitih sportova.</p>
+        <ul class="das-disc" aria-label="Discipline" style="list-style:none;margin:0 0 24px;padding:0;display:flex;flex-wrap:wrap;gap:8px"><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Gimnastika</li><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Atletika</li><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Fudbal</li><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Kosarka</li><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Dzudo</li><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Tekvondo</li><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Plivanje</li></ul>
         <dl class="facts" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))">
           <div><dt>Uzrast</dt><dd>2 – 12 godina</dd></div>
           <div><dt>Trajanje treninga</dt><dd>60 min</dd></div>
@@ -297,25 +300,49 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});})
           <div><dt>Mesecna clanarina</dt><dd><span style="color:#FFDF00">X.XXX RSD</span> / mesecno<small style="display:block;margin-top:4px;font-size:14px;font-weight:600;color:#D1FAE5">Popust za drugo dete / brata ili sestru</small></dd></div>
           <div><dt>Termini</dt><dd><span style="white-space:nowrap">Utorak i Cetvrtak 18h</span><span style="display:block">Subota 10h</span></dd></div>
         </dl>
-        <p class="pkg-sub">Sta radimo na treninzima po uzrastima</p>
-        <ul class="checks das-checks">
-          <li><span><b>2–4 god (Prvi koraci):</b> razvoj osnovne motorike, ravnoteze i koordinacije kroz igru i poligoncice.</span></li>
-          <li><span><b>4–8 god (Skolica sporta &amp; Poligoni):</b> poligoni spretnosti, pravilno drzanje ledja/stopala, osnove gimnastike i igara sa loptom.</span></li>
-          <li><span><b>8–12 god (Sportsko usmeravanje &amp; Dzudo):</b> kondicija, snaga, osnove dzudo vestine, pravilni padovi i jacanje discipline.</span></li>
+        <p class="pkg-sub" style="margin-top:8px">Sta radimo na treninzima po uzrastima</p>
+        <ul class="das-ages" style="list-style:none;margin:0 0 24px;padding:0;display:grid;gap:14px">
+          <li class="das-age" style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;background:rgba(0,0,0,.18);border:2px solid #10B981;border-radius:18px;padding:25px 20px">
+            <span aria-hidden="true" style="width:56px;height:56px;display:grid;place-items:center;background:#FFDF00;border:2px solid #1A0B2E;border-radius:16px;font-size:30px;line-height:1">🤸</span>
+            <div style="display:grid;gap:8px">
+              <p class="das-age-pill" style="justify-self:start;margin:0;background:#064E3B;border:2px solid #FFDF00;border-radius:999px;padding:5px 14px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#FFDF00">2 – 4 godine</p>
+              <p style="margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:21px;line-height:1.2;color:#FFDF00;text-wrap:balance">Prvi koraci &amp; Bazicni sportovi</p>
+              <p style="margin:0;font-size:19px;line-height:1.6;color:#FFFFFF;opacity:1;max-width:60ch;text-wrap:pretty">Kroz igru i poligone razvijamo osnovnu motoriku, ravnotezu i koordinaciju. Uce kolutove, skokove i pravilno trcanje.</p>
+              <ul class="das-sports" style="list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px"><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Gimnastika</li><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Akrobatika</li><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Atletika</li></ul>
+            </div>
+          </li>
+          <li class="das-age" style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;background:rgba(0,0,0,.18);border:2px solid #10B981;border-radius:18px;padding:25px 20px">
+            <span aria-hidden="true" style="width:56px;height:56px;display:grid;place-items:center;background:#FFDF00;border:2px solid #1A0B2E;border-radius:16px;font-size:30px;line-height:1">⚽</span>
+            <div style="display:grid;gap:8px">
+              <p class="das-age-pill" style="justify-self:start;margin:0;background:#064E3B;border:2px solid #FFDF00;border-radius:999px;padding:5px 14px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#FFDF00">4 – 8 godina</p>
+              <p style="margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:21px;line-height:1.2;color:#FFDF00;text-wrap:balance">Skolica sporta &amp; Timski sportovi</p>
+              <p style="margin:0;font-size:19px;line-height:1.6;color:#FFFFFF;opacity:1;max-width:60ch;text-wrap:pretty">Poligoni spretnosti, agilnost, skok u dalj i pravilno drzanje tela i stopala. Uce osnove i pravila igre sa loptom.</p>
+              <ul class="das-sports" style="list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px"><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Poligoni</li><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Fudbal</li><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Kosarka</li></ul>
+            </div>
+          </li>
+          <li class="das-age" style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;background:rgba(0,0,0,.18);border:2px solid #10B981;border-radius:18px;padding:25px 20px">
+            <span aria-hidden="true" style="width:56px;height:56px;display:grid;place-items:center;background:#FFDF00;border:2px solid #1A0B2E;border-radius:16px;font-size:30px;line-height:1">🥋</span>
+            <div style="display:grid;gap:8px">
+              <p class="das-age-pill" style="justify-self:start;margin:0;background:#064E3B;border:2px solid #FFDF00;border-radius:999px;padding:5px 14px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#FFDF00">8 – 12 godina</p>
+              <p style="margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:21px;line-height:1.2;color:#FFDF00;text-wrap:balance">Sportska usmerenja, Borilacki sportovi &amp; Plivanje</p>
+              <p style="margin:0;font-size:19px;line-height:1.6;color:#FFFFFF;opacity:1;max-width:60ch;text-wrap:pretty">Kondicija, snaga i disciplina. Pravilni padovi i tehnike, uz plivanje za sigurnost i zdrav rast. Pomazemo detetu da pronadje svoj sport.</p>
+              <ul class="das-sports" style="list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px"><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Dzudo</li><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Tekvondo</li><li style="background:rgba(0,0,0,.22);border:1.5px solid #7CE08A;border-radius:999px;padding:5px 12px;font-size:15px;font-weight:700;color:#fff">Plivanje</li></ul>
+            </div>
+          </li>
         </ul>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px;margin:8px 0 24px">
-          <div style="background:rgba(0,0,0,.18);border:2px solid #10B981;border-radius:16px;padding:16px 18px">
-            <p style="margin:0 0 6px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#7CE08A">📍 Gde se trenira</p>
-            <p style="margin:0;font-size:16px;line-height:1.55;color:#fff">Treninzi se odrzavaju na otvorenom terenu i u zatvorenom prostoru.</p>
-            <p style="margin:10px 0 0;font-size:16px;line-height:1.5;color:#fff"><b style="color:#7CE08A">Lokacija treninga:</b> <span id="dasLokacija">uskoro</span></p>
+        <div class="das-info" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px;margin:0 0 24px">
+          <div style="background:rgba(0,0,0,.18);border:2px solid #10B981;border-radius:16px;padding:16px 18px;display:grid;gap:6px;align-content:start">
+            <p style="margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#7CE08A">📍 Gde se trenira</p>
+            <p style="margin:0;font-size:17px;line-height:1.55;color:#fff;text-wrap:pretty">Na otvorenom terenu i u zatvorenom prostoru.</p>
+            <p style="margin:0;font-size:17px;line-height:1.5;color:#fff"><b style="color:#7CE08A">Lokacija:</b> <span id="dasLokacija">uskoro</span></p>
           </div>
-          <div style="background:rgba(0,0,0,.18);border:2px solid #10B981;border-radius:16px;padding:16px 18px">
-            <p style="margin:0 0 6px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#7CE08A">🎒 Sta poneti na prvi trening</p>
-            <p style="margin:0;font-size:16px;line-height:1.55;color:#fff">Obicna pamucna majica, trenerka ili sorc, ciste patike i flasica vode.</p>
+          <div style="background:rgba(0,0,0,.18);border:2px solid #10B981;border-radius:16px;padding:16px 18px;display:grid;gap:6px;align-content:start">
+            <p style="margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#7CE08A">🎒 Sta poneti</p>
+            <p style="margin:0;font-size:17px;line-height:1.55;color:#fff;text-wrap:pretty">Pamucna majica, trenerka ili sorc, ciste patike i flasica vode.</p>
           </div>
-          <div style="background:rgba(0,0,0,.18);border:2px solid #10B981;border-radius:16px;padding:16px 18px">
-            <p style="margin:0 0 6px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#7CE08A">🏅 Licencirani treneri</p>
-            <p style="margin:0;font-size:16px;line-height:1.55;color:#fff">Treninge vode licencirani profesori fizickog vaspitanja i strucni sportski treneri sa iskustvom u radu sa decom.</p>
+          <div style="background:rgba(0,0,0,.18);border:2px solid #10B981;border-radius:16px;padding:16px 18px;display:grid;gap:6px;align-content:start">
+            <p style="margin:0;font-family:'Fredoka',sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#7CE08A">🏅 Licencirani treneri</p>
+            <p style="margin:0;font-size:17px;line-height:1.55;color:#fff;text-wrap:pretty">Licencirani profesori fizickog vaspitanja sa iskustvom u radu sa decom.</p>
           </div>
         </div>
         <a class="btn btn-dark" href="#kontakt" data-trial data-note="Probni trening: Skolica sporta (svi uzrasti)" data-prog="Probni trening - Školica sporta (Svi uzrasti)" style="margin-top:auto">Rezervisi besplatan probni trening</a>
@@ -351,19 +378,26 @@ m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});})
         <ol class="rez-steps" aria-label="Koraci">
           <li><b>1</b>Datum</li><li><b>2</b>Termin</li><li><b>3</b>Vasi podaci</li>
         </ol>
-        <div class="rez-pick" id="rezPick" aria-live="polite">
+        <div class="rez-pick" id="rezPick" aria-live="polite" hidden style="display:none">
           <label class="rez-pick-l" for="rezSel">Program ili paket</label>
           <select id="rezSel" class="rez-sel">
             <option value="">Izaberite (ili u kalendaru)</option>
-            <option value="Probni trening - Školica sporta (Svi uzrasti)">Probni trening - Skolica sporta (svi uzrasti)</option>
+            <option value="Probni trening - Školica sporta (Svi uzrasti)">Probni trening - svi uzrasti (nisam siguran/na)</option>
+            <option value="Probni trening - Prvi sportski koraci (2-4 god)">Probni trening - Prvi sportski koraci (2–4 god)</option>
+            <option value="Probni trening - Školica sporta &amp; Poligoni (4-8 god)">Probni trening - Skolica sporta &amp; Poligoni (4–8 god)</option>
+            <option value="Probni trening - Sportsko usmeravanje &amp; Džudo (8-12 god)">Probni trening - Sportsko usmeravanje &amp; Dzudo (8–12 god)</option>
             <option value="Rođendan u prirodi - Paket 1 (Osnovni)">Rodjendan u prirodi - Paket 1 (Osnovni)</option>
             <option value="Rođendan u prirodi - Paket 2 (Srednji)">Rodjendan u prirodi - Paket 2 (Srednji)</option>
             <option value="Rođendan u prirodi - Paket 3 (PREMIUM)">Rodjendan u prirodi - Paket 3 (PREMIUM)</option>
           </select>
           <strong class="rez-pick-p" id="rezPickP"></strong>
         </div>
+        <div id="calTabs" role="tablist" aria-label="Sta zakazujete" style="display:flex;gap:10px;flex-wrap:wrap;margin:0 0 14px">
+          <button type="button" role="tab" data-cal-tab="trening" aria-selected="true" style="flex:1 1 0;min-height:48px;padding:10px 14px;border:2px solid #1A0B2E;border-radius:999px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:16px;cursor:pointer;transition:transform .15s,box-shadow .15s,background .2s,color .2s;background:#047857;color:#fff;box-shadow:3px 3px 0 #1A0B2E">⚽ Probni trening</button>
+          <button type="button" role="tab" data-cal-tab="rodjendan" aria-selected="false" style="flex:1 1 0;min-height:48px;padding:10px 14px;border:2px solid #1A0B2E;border-radius:999px;font-family:'Fredoka',sans-serif;font-weight:700;font-size:16px;cursor:pointer;transition:transform .15s,box-shadow .15s,background .2s,color .2s;background:#fff;color:#1A0B2E;box-shadow:none">🎂 Rodjendan u prirodi</button>
+        </div>
         <div class="rez-frame">
-          <div id="my-cal-inline" class="rez-inline"><p class="rez-loading"><span class="spin spin-ink" aria-hidden="true"></span> Ucitavam slobodne termine…</p></div>
+          <div id="my-cal-inline" class="rez-inline" data-cal-link="vlada-2iou1r/das-probni-trening"><p class="rez-loading"><span class="spin spin-ink" aria-hidden="true"></span> Ucitavam slobodne termine…</p></div>
         </div>
         <p class="f-note">Vise volite telefonom? <a href="tel:+381637708893">063 770 8893</a> · 🎁 prvi probni trening besplatan</p>
       </div>
@@ -497,24 +531,34 @@ addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(u);}},{
       el.classList.add('ready'); mo.disconnect();
     });
     mo.observe(el, { childList: true, subtree: true });
-    // Podrazumevano: besplatan probni trening. Stari link "das" (kapara) samo za rodjendanske pakete.
-    var CAL_USER = "vlada-2iou1r", CAL_TRIAL = "probni-trening-das", CAL_BDAY = "das";
-    function ev() { return (window.GO_CAL_PROG || "").indexOf("Ro") === 0 ? CAL_BDAY : CAL_TRIAL; }
+    // Koji Cal.com dogadjaj se otvara pise u data-cal-link na #my-cal-inline (postavlja ga dasSetProgram):
+    // Podrazumevano "vlada-2iou1r/das-probni-trening" (probni treninzi); "vlada-2iou1r/das" samo za rodjendanske pakete.
+    function calLink() { return el.getAttribute("data-cal-link") || "vlada-2iou1r/das-probni-trening"; }
     var cfg = { "layout": "month_view", "useSlotsViewOnSmallScreen": "true", "theme": "light", "timeFormat": "24" };
+    var searchedLink = calLink();
+    // Polje "Svrha rezervacije" u Cal.com: u dogadjaju "das" je slug "Program", u "das-probni-trening" duzi slug ispod.
+    var TRIAL_KEY = "Svrha-rezervacije---Izaberite-program-ili-paket";
+    function setProg() {
+      delete cfg.Program; delete cfg[TRIAL_KEY];
+      var v = (window.GO_CAL_PROG || "").replace(/(\d+)-(\d+) god/, "$1–$2 god");
+      if (!v) return;
+      cfg[calLink().indexOf("/das-probni-trening") > 0 ? TRIAL_KEY : "Program"] = v;
+    }
     function mount(first) {
       if (mount.done) return; mount.done = true;
-      if (first) { cfg.month = first.slice(0, 7); cfg.date = first; }
+      // Ako je program promenjen dok je trazen prvi slobodan dan, taj datum vazi za drugi kalendar – ignorisi ga.
+      if (first && searchedLink === calLink()) { cfg.month = first.slice(0, 7); cfg.date = first; }
       if (window.GO_CAL_NOTES) cfg.notes = window.GO_CAL_NOTES;
-      if (window.GO_CAL_PROG) cfg.Program = window.GO_CAL_PROG;
-      Cal("inline", { elementOrSelector: "#my-cal-inline", calLink: CAL_USER + "/" + ev(), config: cfg });
+      setProg();
+      Cal("inline", { elementOrSelector: "#my-cal-inline", calLink: calLink(), config: cfg });
     }
     window.goCalPrefill = function (notes) {
       if (!mount.done) return;
       cfg.notes = notes;
       delete cfg.month; delete cfg.date;
-      if (window.GO_CAL_PROG) cfg.Program = window.GO_CAL_PROG; else delete cfg.Program;
+      setProg();
       el.innerHTML = '<div id="my-cal-inline-' + Date.now() + '"></div>';
-      Cal("inline", { elementOrSelector: '#' + el.firstChild.id, calLink: CAL_USER + "/" + ev(), config: cfg });
+      Cal("inline", { elementOrSelector: '#' + el.firstChild.id, calLink: calLink(), config: cfg });
     };
     // Uvek pronadji prvi dan sa slobodnim terminom (uzivo iz Cal.com-a, pri svakom otvaranju sajta).
     // Pretrazuje do 12 meseci unapred u blokovima od 4 meseca; ako Cal.com ne odgovori, kalendar se otvara normalno.
@@ -523,9 +567,18 @@ addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(u);}},{
     function search(i) {
       if (i >= 3) { mount(); return; }
       var s = new Date(now + i * 120 * DAY), e = new Date(now + (i + 1) * 120 * DAY);
-      fetch("https://api.cal.com/v2/slots?eventTypeSlug=" + ev() + "&username=" + CAL_USER + "&start=" + f(s) + "&end=" + f(e) + "&timeZone=Europe/Belgrade", { headers: { "cal-api-version": "2024-09-04" }, cache: "no-store" })
-        .then(function (r) { return r.ok ? r.json() : null; })
+      var parts = searchedLink.split("/");
+      fetch("https://api.cal.com/v2/slots?eventTypeSlug=" + parts[1] + "&username=" + parts[0] + "&start=" + f(s) + "&end=" + f(e) + "&timeZone=Europe/Belgrade", { headers: { "cal-api-version": "2024-09-04" }, cache: "no-store" })
+        .then(function (r) {
+          // Ako dogadjaj za probni trening ne postoji na Cal.com (404/400), automatski predji na "das".
+          if (!r.ok && (r.status === 404 || r.status === 400) && parts[1] !== "das") {
+            window.DAS_TRIAL_MISSING = true; el.setAttribute("data-cal-link", "vlada-2iou1r/das"); searchedLink = "vlada-2iou1r/das";
+            search(i); return "retry";
+          }
+          return r.ok ? r.json() : null;
+        })
         .then(function (j) {
+          if (j === "retry") return;
           if (!j) { mount(); return; }
           var d = j.data || {}, days = Object.keys(d).filter(function (k) { return /^\d{4}-\d{2}-\d{2}$/.test(k) && d[k] && d[k].length; }).sort();
           if (days.length) mount(days[0]); else search(i + 1);
@@ -552,6 +605,31 @@ addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(u);}},{
 <script>
 // Cal.com link za probni trening – upisi URL (npr. "https://cal.com/das-nis/probni-trening").
 // Dok je prazno, dugmad vode na kalendar u sekciji Kontakt.
+// Postavlja izabrani program i odgovarajuci Cal.com dogadjaj (rodjendan = "das", sve ostalo = probni trening).
+window.dasSetProgram = function (v) {
+  window.GO_CAL_PROG = v || '';
+  var c = document.getElementById('my-cal-inline');
+  var bday = (v || '').indexOf('Ro') === 0;
+  if (c) c.setAttribute('data-cal-link', (bday || window.DAS_TRIAL_MISSING) ? 'vlada-2iou1r/das' : 'vlada-2iou1r/das-probni-trening');
+  document.querySelectorAll('[data-cal-tab]').forEach(function (b) {
+    var on = (b.getAttribute('data-cal-tab') === 'rodjendan') === bday;
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
+    b.style.background = on ? (bday ? '#FF2A85' : '#047857') : '#fff';
+    b.style.color = on ? '#fff' : '#1A0B2E';
+    b.style.boxShadow = on ? '3px 3px 0 #1A0B2E' : 'none';
+  });
+};
+// Prekidac iznad kalendara: Probni trening / Rodjendan u prirodi
+document.querySelectorAll('[data-cal-tab]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var v = b.getAttribute('data-cal-tab') === 'rodjendan' ? 'Rođendan u prirodi' : '';
+    if (window.GO_CAL_PROG === v) return;
+    window.dasSetProgram(v); window.GO_CAL_NOTES = '';
+    if (window.dasSetSel) window.dasSetSel('');
+    if (window.goCalLoad) window.goCalLoad();
+    if (window.goCalPrefill) window.goCalPrefill('');
+  });
+});
 (function () {
   var DAS_TRIAL_CAL_URL = '';
   document.querySelectorAll('[data-trial]').forEach(function (a) {
@@ -559,7 +637,7 @@ addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(u);}},{
     if (DAS_TRIAL_CAL_URL) { a.href = DAS_TRIAL_CAL_URL + (DAS_TRIAL_CAL_URL.indexOf('?') < 0 ? '?' : '&') + 'Program=' + encodeURIComponent(a.getAttribute('data-prog') || '') + '&notes=' + encodeURIComponent(note); a.target = '_blank'; a.rel = 'noopener'; return; }
     a.addEventListener('click', function (e) {
       window.GO_CAL_NOTES = note;
-      window.GO_CAL_PROG = a.getAttribute('data-prog') || '';
+      window.dasSetProgram(a.getAttribute('data-prog') || '');
       var p = document.getElementById('rezPick');
       if (window.dasSetSel) window.dasSetSel(window.GO_CAL_PROG);
       if (window.goCalPrefill) window.goCalPrefill(note);
@@ -584,7 +662,7 @@ document.getElementById('heroBook').addEventListener('click', function (e) {
   function tag(v) { price.textContent = v.indexOf('Probni') === 0 ? 'Besplatno' : ''; }
   window.dasSetSel = function (v) { sel.value = v || ''; tag(sel.value); };
   sel.addEventListener('change', function () {
-    window.GO_CAL_PROG = sel.value;
+    window.dasSetProgram(sel.value);
     window.GO_CAL_NOTES = sel.value;
     tag(sel.value);
     if (window.goCalLoad) window.goCalLoad();
@@ -592,6 +670,7 @@ document.getElementById('heroBook').addEventListener('click', function (e) {
   });
 })();
 </script>
+<script>(function(){var p=document.getElementById('programi');if(!p||!('IntersectionObserver' in window))return;new IntersectionObserver(function(e){p.classList.toggle('in-view',e[0].isIntersecting);},{threshold:.15}).observe(p);})();</script>
 <script>(function(){var k=document.querySelector('.das-kicker');if(!k)return;document.documentElement.classList.add('js');if(!('IntersectionObserver' in window)){k.classList.add('in');return;}var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){k.classList.add('in');o.disconnect();}},{threshold:.4});o.observe(k);})();</script>
 </body>
 </html>

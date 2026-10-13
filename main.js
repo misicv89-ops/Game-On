@@ -319,7 +319,7 @@
     window.addEventListener('scroll', function () { if (heroArt && window.innerWidth < 720) { heroArt.style.transform = ''; return; } if (heroArt && window.scrollY < 900) heroArt.style.transform = 'translateY(' + Math.min(window.scrollY * 0.08, 60).toFixed(1) + 'px)'; }, { passive: true });
 
     // odsjaj na glavnim dugmadima
-    $$('.hero-cta .btn, .hdr-cta, .pkg .btn, .mbar .btn-pink').forEach(function (b) { b.classList.add('shine'); });
+    $$('.hero-cta .btn, .hdr-cta, .nav-das, .pkg .btn, .mbar .btn-pink').forEach(function (b) { b.classList.add('shine'); });
 
     var fine = window.matchMedia('(pointer: fine)').matches;
     if (fine) {
