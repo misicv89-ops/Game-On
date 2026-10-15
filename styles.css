@@ -437,7 +437,8 @@ a.ftr-logo:hover{transform:translateY(-3px)}
 @media(max-width:719px){
   .ftr-row{gap:16px 18px;justify-content:space-between;align-items:center}
   .ftr-contact{display:contents}
-  .ftr-contact a:not(.ig):not(.fb){display:none}
+  .ftr-contact a:not(.ig):not(.fb):not(.priv){display:none}
+  .ftr .priv{order:5}
   .ftr-copy{order:2;flex:1 1 100%}
   .ftr .ig{order:3}.ftr .fb{order:4}
 }

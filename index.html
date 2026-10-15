@@ -76,13 +76,14 @@
   "mainEntity": [
     {"@type":"Question","name":"Koji paketi su dostupni?","acceptedAnswer":{"@type":"Answer","text":"Dostupna su dva rodjendanska paketa (1h 45min): Meni sa kiflicama (800 RSD po detetu) i Meni sa picom (900 RSD po detetu). Igraonica je iskljucivo rezervisana za Vas. Dostupne su i tematske proslave Filmska avantura i Gaming zona."}},
     {"@type":"Question","name":"Koliko kosta rodjendan?","acceptedAnswer":{"@type":"Answer","text":"Cena je 800 RSD po detetu za Meni sa kiflicama i 900 RSD po detetu za Meni sa picom. Minimum 20 dece. Torta nije ukljucena u cenu."}},
-    {"@type":"Question","name":"Kako mogu da rezervisem rodjendan?","acceptedAnswer":{"@type":"Answer","text":"Posaljite zahtev preko forme na sajtu, pozovite 064 444 0244 ili pisite na gameon.igraonica@gmail.com. Termin je potvrdjen tek nakon nase potvrde."}},
+    {"@type":"Question","name":"Kako mogu da rezervisem rodjendan?","acceptedAnswer":{"@type":"Answer","text":"Izaberite slobodan datum i termin u kalendaru na sajtu i unesite svoje podatke – potvrdu rezervacije dobijate odmah na email. Za pitanja pozovite 064 444 0244 ili pisite na gameon.igraonica@gmail.com."}},
     {"@type":"Question","name":"Za koji uzrast je Game On?","acceptedAnswer":{"@type":"Answer","text":"Sadrzaji su prilagodjeni deci od 2 do 12+ godina – od mekog lavirinta za najmladje do VR Meta Quest zone za stariju decu."}},
     {"@type":"Question","name":"Da li roditelji mogu da borave u prostoru?","acceptedAnswer":{"@type":"Answer","text":"Da. Za roditelje je predvidjen kafic u okviru igraonice, sa ponudom hrane i pica."}},
     {"@type":"Question","name":"Sta je ukljuceno u cenu?","acceptedAnswer":{"@type":"Answer","text":"Neograniceno sokica i grickalica za decu, kiflice ili pica za slavlje (zavisno od menija) i animatori koji vode igru i animaciju dece. Na Vama je samo organizacija torte."}}
   ]
 }
 </script>
+<script src="analytics.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Preskoci na sadrzaj</a>
@@ -511,7 +512,7 @@
       <details><summary>Koji paketi su dostupni?</summary><p>Dostupna su dva rodjendanska paketa (1h 45min): <strong>Meni sa kiflicama</strong> (800 RSD po detetu) i <strong>Meni sa picom</strong> (900 RSD po detetu). Igraonica je iskljucivo rezervisana za Vas. Dostupne su i tematske proslave <strong>Filmska avantura</strong> i <strong>Gaming zona</strong>.</p></details>
       <details><summary>Koliko kosta rodjendan?</summary><p>Cena je 800 RSD po detetu za Meni sa kiflicama i 900 RSD po detetu za Meni sa picom. Minimum 20 dece. Torta nije ukljucena u cenu.</p></details>
       <details><summary>Da li je potrebno unapred rezervisati termin?</summary><p>Svi slobodni termini su dostupni u sekciji ispod – <a href="#rezervacija">pogledajte i rezervisite</a>.</p></details>
-      <details><summary>Kako mogu da rezervisem rodjendan?</summary><p>Posaljite zahtev preko <a href="#rezervacija">forme za rezervaciju</a>, pozovite <a href="tel:+381644440244">064 444 0244</a> ili pisite na <a href="mailto:gameon.igraonica@gmail.com">gameon.igraonica@gmail.com</a>. Termin je potvrdjen tek nakon nase potvrde.</p></details>
+      <details><summary>Kako mogu da rezervisem rodjendan?</summary><p>Izaberite slobodan datum i termin u <a href="#rezervacija">kalendaru za rezervaciju</a> i unesite svoje podatke – potvrdu rezervacije dobijate odmah na email. Za pitanja pozovite <a href="tel:+381644440244">064 444 0244</a> ili pisite na <a href="mailto:gameon.igraonica@gmail.com">gameon.igraonica@gmail.com</a>.</p></details>
       <details><summary>Za koji uzrast je Game On?</summary><p>Sadrzaji su prilagodjeni deci od 2 do 12+ godina – od mekog lavirinta za najmladje do VR Meta Quest zone za stariju decu.</p></details>
       <details><summary>Da li roditelji mogu da borave u prostoru?</summary><p>Da. Za roditelje je predvidjen kafic u okviru igraonice, sa ponudom hrane i pica.</p></details>
       <details><summary>Sta je ukljuceno u cenu?</summary><p>Neograniceno sokica i grickalica za decu, kiflice ili pica za slavlje (zavisno od menija) i animatori koji vode igru i animaciju dece. Na Vama je samo organizacija torte.</p></details>
@@ -569,6 +570,7 @@
     if (done) return; done = true;
     (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", { origin: "https://app.cal.com" });
+    Cal.config = Cal.config || {}; Cal.config.forwardQueryParams = true;
     Cal("on", { action: "linkReady", callback: function () { el.classList.add("ready"); } });
     var mo = new MutationObserver(function () {
       var cal = el.querySelector('cal-inline, iframe');
@@ -577,28 +579,29 @@
       el.classList.add('ready'); mo.disconnect();
     });
     mo.observe(el, { childList: true, subtree: true });
-    var CAL_USER = "vlada-2iou1r", CAL_EVENT = "rezervacija-termina-igraonica";
+    function calLink() { return "vlada-2iou1r/rezervacija-termina-igraonica"; }
     var cfg = { "layout": "month_view", "useSlotsViewOnSmallScreen": "true", "theme": "light", "timeFormat": "24" };
+    function setProg() {  }
     function mount(first) {
       if (mount.done) return; mount.done = true;
       if (first) { cfg.month = first.slice(0, 7); cfg.date = first; }
       if (window.GO_CAL_NOTES) cfg.notes = window.GO_CAL_NOTES;
-      Cal("inline", { elementOrSelector: "#my-cal-inline", calLink: CAL_USER + "/" + CAL_EVENT, config: cfg });
+      setProg();
+      Cal("inline", { elementOrSelector: "#my-cal-inline", calLink: calLink(), config: cfg });
     }
     window.goCalPrefill = function (notes) {
       if (!mount.done) return;
-      cfg.notes = notes;
+      cfg.notes = notes; delete cfg.month; delete cfg.date;
+      setProg();
       el.innerHTML = '<div id="my-cal-inline-' + Date.now() + '"></div>';
-      Cal("inline", { elementOrSelector: '#' + el.firstChild.id, calLink: CAL_USER + "/" + CAL_EVENT, config: cfg });
+      Cal("inline", { elementOrSelector: '#' + el.firstChild.id, calLink: calLink(), config: cfg });
     };
-    // Uvek pronadji prvi dan sa slobodnim terminom (uzivo iz Cal.com-a, pri svakom otvaranju sajta).
-    // Pretrazuje do 12 meseci unapred u blokovima od 4 meseca; ako Cal.com ne odgovori, kalendar se otvara normalno.
     var f = function (d) { return d.toISOString().slice(0, 10); }, DAY = 864e5, now = Date.now();
     setTimeout(function () { mount(); }, 7000);
     function search(i) {
       if (i >= 3) { mount(); return; }
-      var s = new Date(now + i * 120 * DAY), e = new Date(now + (i + 1) * 120 * DAY);
-      fetch("https://api.cal.com/v2/slots?eventTypeSlug=" + CAL_EVENT + "&username=" + CAL_USER + "&start=" + f(s) + "&end=" + f(e) + "&timeZone=Europe/Belgrade", { headers: { "cal-api-version": "2024-09-04" }, cache: "no-store" })
+      var parts = calLink().split('/'), s = new Date(now + i * 120 * DAY), e = new Date(now + (i + 1) * 120 * DAY);
+      fetch("https://api.cal.com/v2/slots?eventTypeSlug=" + parts[1] + "&username=" + parts[0] + "&start=" + f(s) + "&end=" + f(e) + "&timeZone=Europe/Belgrade", { headers: { "cal-api-version": "2024-09-04" }, cache: "no-store" })
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (j) {
           if (!j) { mount(); return; }
@@ -643,7 +646,7 @@
       <a class="ig" href="https://www.instagram.com/igraonicagameon/" target="_blank" rel="noopener">Instagram</a>
       <a class="fb" href="https://www.facebook.com/p/Igraonica-Game-On-61588146980628/" target="_blank" rel="noopener">Facebook</a>
     </nav>
-    <p class="ftr-copy">© 2026 Game On · Decija igraonica &amp; rodjendaonica · Nis</p>
+    <p class="ftr-copy">© 2026 Game On · Decija igraonica &amp; rodjendaonica · Nis · <a class="priv" href="privatnost.html" style="color:inherit;text-decoration:underline">Politika privatnosti</a></p>
   </div>
 </footer>
 
